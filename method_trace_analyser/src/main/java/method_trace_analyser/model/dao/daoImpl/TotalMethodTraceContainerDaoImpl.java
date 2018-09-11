@@ -10,6 +10,7 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 	@Override
 	public void convertBinaryTraceFileToLog(File traceTRCFile) {
 		// TODO Auto-generated method stub
+		//somthing
 
 	}
 
