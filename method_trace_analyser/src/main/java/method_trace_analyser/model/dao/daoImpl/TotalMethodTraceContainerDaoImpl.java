@@ -28,6 +28,7 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 			e.printStackTrace();
 		}finally {
 			//close file
+			System.out.println("CHANGES are made :)");
 		}
 		return false;
 	}
