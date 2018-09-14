@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 import method_trace_analyser.model.bo.TotalMethodTraceContainer;
 import method_trace_analyser.model.dao.TotalMethodTraceContainerDAO;
@@ -28,8 +29,7 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 			e.printStackTrace();
 		}finally {
 			//close file
-			System.out.println("CHANGES are made finally:)");
-			System.out.println("2CHANGES are made finally:)");
+			 
 		}
 		return false;
 	}
@@ -55,11 +55,17 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 		}
 		return false;
 	}
-
+	
 	@Override
-	public TotalMethodTraceContainer getTraceDataFromFile(File traceLogFile) {
+	public ArrayList<String> getTracePointList(File traceLOGFile) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public TotalMethodTraceContainer getTraceDataFromFile(ArrayList<String> tracePointList) {
 		// get the trace information from trace files
 		//help: read from the log file line by line
+		// add incomplete methods if any 
 		return null;
 	}
 
@@ -92,6 +98,20 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public TreeMap<String, Integer> generateMethodInvocationCountTable() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean updateTraceData(TotalMethodTraceContainer traceContainer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	
 
 	
 

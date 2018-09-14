@@ -16,7 +16,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("/method_trace_analyser/view/Main.fxml"));
-			Scene scene = new Scene(root,600,600);
+			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/css/main.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();

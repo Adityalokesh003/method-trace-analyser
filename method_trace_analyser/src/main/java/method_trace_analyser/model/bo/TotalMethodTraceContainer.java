@@ -1,12 +1,15 @@
 package method_trace_analyser.model.bo;
 
 import java.util.List;
+import java.util.Stack;
 import java.util.TreeMap;
 
 public class TotalMethodTraceContainer {
 	private String fileName;
 	private List<IndividualMethodTraceContainer> methodTraceList;
 	private int noOfTracePoints;
+	private List<String> incompleteMethodList;
+	
 	public TotalMethodTraceContainer() {
 	}
 	public String getFileName() {
@@ -28,16 +31,18 @@ public class TotalMethodTraceContainer {
 		this.noOfTracePoints = noOfTracePoints;
 	}
 	
-	public TreeMap<String, Integer> generateMethodInvocationsTable(){
-		// method code goes here
-		return new TreeMap<String, Integer>();
+	public List<String> getIncompleteMethodList() {
+		return incompleteMethodList;
+	}
+	public void setIncompleteMethodList(List<String> incompleteMethodList) {
+		this.incompleteMethodList = incompleteMethodList;
 	}
 	@Override
 	public String toString() {
 		return "TotalMethodTraceContainer [fileName=" + fileName + ", methodTraceList=" + methodTraceList
-				+ ", noOfTracePoints=" + noOfTracePoints + "]";
+				+ ", noOfTracePoints=" + noOfTracePoints + ", incompleteMethodList=" + incompleteMethodList + "]";
 	}
-	
+	 
 	
 
 }
