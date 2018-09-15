@@ -8,7 +8,7 @@ public class TotalMethodTraceContainer {
 	private String fileName;
 	private List<IndividualMethodTraceContainer> methodTraceList;
 	private int noOfTracePoints;
-	private List<String> incompleteMethodList;
+	private List<TracePoint> incompleteMethodList;
 	
 	public TotalMethodTraceContainer() {
 	}
@@ -31,10 +31,10 @@ public class TotalMethodTraceContainer {
 		this.noOfTracePoints = noOfTracePoints;
 	}
 	
-	public List<String> getIncompleteMethodList() {
+	public List<TracePoint> getIncompleteMethodList() {
 		return incompleteMethodList;
 	}
-	public void setIncompleteMethodList(List<String> incompleteMethodList) {
+	public void setIncompleteMethodList(List<TracePoint> incompleteMethodList) {
 		this.incompleteMethodList = incompleteMethodList;
 	}
 	@Override

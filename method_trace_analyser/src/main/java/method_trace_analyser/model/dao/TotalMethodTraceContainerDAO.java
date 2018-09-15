@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 import method_trace_analyser.model.bo.TotalMethodTraceContainer;
+import method_trace_analyser.model.bo.TracePoint;
 
 public interface TotalMethodTraceContainerDAO {
 	//file handling part
 	public boolean createTraceFile(String traceCommand);
 	public boolean convertBinaryTraceFileToLog(File traceTRCFile);
-	public ArrayList<String> getTracePointList(File traceLOGFile);
-	public TotalMethodTraceContainer getTraceDataFromFile(ArrayList<String> tracePointList);
+	public ArrayList<TracePoint> getTracePointList(File traceLOGFile);
+	public TotalMethodTraceContainer getTraceDataFromFile(ArrayList<TracePoint> tracePointList,String fileName);
 	public TotalMethodTraceContainer deleteTraceTRCFile(String trcTraceFileName);
 	public TotalMethodTraceContainer deleteTraceLogFile(String logtraceFileName);
 	//db part
