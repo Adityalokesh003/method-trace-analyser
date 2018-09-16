@@ -87,7 +87,7 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 
 	@Override
 	public ArrayList<TracePoint> getTracePointList(File traceLOGFile) {
-		ArrayList<TracePoint> tracePoints =null; 
+		ArrayList<TracePoint> tracePoints =tracePoints = new ArrayList<>(); 
 		BufferedReader bufferedReader = null;
 		try {
 			bufferedReader = new BufferedReader(new FileReader(traceLOGFile));
@@ -96,7 +96,7 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 				Pattern pattern = Pattern.compile("(?<timeStamp>\\d{2}:\\d{2}:\\d{2}\\.\\d{9})\\s+\\*?(?<threadId>0x\\d{7})\\s+mt.\\d{1}\\s+(?<traceType>Entry|Exit)\\s+[><](?<methodName>.*?)V.*");
 				Matcher matcher = pattern.matcher(data);
 				if (matcher.find()) {
-					tracePoints = new ArrayList<>();
+					
 					TracePoint tracePoint = new TracePoint();
 					tracePoint.setTimeStamp(matcher.group("timeStamp"));
 					tracePoint.setThreadId(matcher.group("threadId"));
