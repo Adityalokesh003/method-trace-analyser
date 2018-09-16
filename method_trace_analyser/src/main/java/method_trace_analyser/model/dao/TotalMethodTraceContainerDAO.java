@@ -20,6 +20,6 @@ public interface TotalMethodTraceContainerDAO {
 	public TotalMethodTraceContainer getTraceDataFromDB(String traceFileName);
 	public boolean updateTraceData(TotalMethodTraceContainer traceContainer);
 	public TotalMethodTraceContainer deleteTraceFromDB(String traceFileName);
-	public TreeMap<String, Integer> generateMethodInvocationCountTable();
+	public TreeMap<String, Integer> generateMethodInvocationCountTable(TotalMethodTraceContainer totalMethodTraceContainer);
 	  
 }
