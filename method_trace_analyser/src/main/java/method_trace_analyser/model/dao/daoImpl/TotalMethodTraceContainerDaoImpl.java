@@ -1,6 +1,7 @@
 package method_trace_analyser.model.dao.daoImpl;
 
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -149,15 +150,26 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 
 	@Override
 	public TotalMethodTraceContainer deleteTraceTRCFile(String trcTraceFileName) {
-		//TODO Auto-generated method stub
-		//sairam
+		File file=new File("trcTraceFileName");
+		if(file.delete()) {
+			System.out.println("Trace file successfully deleted.")
+		}
+		else {
+			System.out.println("Could not delete the Trace File")
+		}
 		return null;
 	}
 
 	@Override
 	public TotalMethodTraceContainer deleteTraceLogFile(String logtraceFileName) {
-		//TODO Auto-generated method stub
-		//sairam
+		File file=new File("logTraceFileName");
+		if(file.delete()) {
+			System.out.println("Log file successfully deleted.")
+		}
+		else {
+			System.out.println("Could not delete the Log File")
+		}
+		
 		return null;
 	}
 
@@ -183,11 +195,35 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 	}
 
 	@Override
-	public TreeMap<String, Integer> generateMethodInvocationCountTable() {
-		// TODO Auto-generated method stub
-		//sairam
-		//sairam code
-		return null;
+	public TreeMap<String,Integer> generateMethodInvocationCountTable(TotalMethodTraceContainer traceContainer) {
+		ArrayList<IndividualMethodTraceContainer> IndividualMethodTraceContainerList =traceContainer.getMethodTraceList();
+		Iterator iterator=IndividualMethodTraceContainerList.iterator();
+		ArrayList<String> IndividualMethodNameList =new ArrayList<String>();
+		
+		TreeMap<String,Integer> IndividualMethodNameMap=new TreeMap<String,Integer>();
+		while(iterator.hasnext())
+		{IndividualMethodNameList.add(iterator.next().getMethodName());	}
+		
+		while(!(IndividualMethodNameList.size()==0))
+			{
+			
+			
+			int count=0;String temp=IndividualMethodNameList.get(0);
+			
+			while(IndividualMethodNameList.contains(temp))
+			{
+				count++;
+			IndividualMethodNameList.remove(temp);
+			
+			}
+			
+			IndividualMethodNameMap.add(temp,count);
+			}
+		
+	
+		
+		
+		return IndividualMethodNameMap;
 	}
 
 	@Override
