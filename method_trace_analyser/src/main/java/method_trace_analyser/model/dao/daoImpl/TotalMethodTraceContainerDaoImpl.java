@@ -1,12 +1,15 @@
 package method_trace_analyser.model.dao.daoImpl;
 
 import java.io.BufferedReader;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Stack;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
@@ -23,28 +26,28 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 	@Override
 	public boolean createTraceFile(String traceCommand) {
 		boolean isCreated = false;
-		List<String> command=new ArrayList<String>();
+		List<String> command = new ArrayList<String>();
 		command.add("CMD");
 		command.add("/C");
-		command.add("java "+traceCommand);
+		command.add("java " + traceCommand);
 		ProcessBuilder processBuilder = new ProcessBuilder(command);
 		processBuilder.directory(new File("path/to/jar_or_class_files"));
-		Process process=null;
+		Process process = null;
 		try {
 			process = processBuilder.start();
 			process.waitFor();
-			/*if(tracefileName.exists()){
-			 *  isCreated = true;
-			}*/
-			//else false
+			/*
+			 * if(tracefileName.exists()){ isCreated = true; }
+			 */
+			// else false
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			if(process.isAlive()) {
+		} finally {
+			if (process.isAlive()) {
 				process.destroy();
 			}
 		}
@@ -53,30 +56,32 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 
 	@Override
 	public boolean convertBinaryTraceFileToLog(File traceTRCFile) {
-		boolean isconverted =  false;
-		List<String> command=new ArrayList<String>();
+		boolean isconverted = false;
+		List<String> command = new ArrayList<String>();
 		command.add("CMD");
 		command.add("/C");
-		command.add("java com.ibm.jvm.format.TraceFormat "+traceTRCFile.getName()+".trc "+traceTRCFile.getName()+".log");
-		ProcessBuilder processBuilder=null;
-		Process process=null;
+		command.add("java com.ibm.jvm.format.TraceFormat " + traceTRCFile.getName() + ".trc " + traceTRCFile.getName()
+				+ ".log");
+		ProcessBuilder processBuilder = null;
+		Process process = null;
 		try {
 			processBuilder = new ProcessBuilder(command);
 			processBuilder.directory(new File("path/to/trace file"));
 			process = processBuilder.start();
 			process.waitFor();
-			/*if(tracelogfileName.exists()){
-			 *  isconverted = true;
-
-			}*/
+			/*
+			 * if(tracelogfileName.exists()){ isconverted = true;
+			 * 
+			 * }
+			 */
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			if(process.isAlive()) {
+		} finally {
+			if (process.isAlive()) {
 				process.destroy();
 			}
 		}
@@ -85,13 +90,14 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 
 	@Override
 	public ArrayList<TracePoint> getTracePointList(File traceLOGFile) {
-		ArrayList<TracePoint> tracePoints  = new ArrayList<>(); 
+		ArrayList<TracePoint> tracePoints = new ArrayList<>();
 		BufferedReader bufferedReader = null;
 		try {
 			bufferedReader = new BufferedReader(new FileReader(traceLOGFile));
 			String data;
-			while ((data= bufferedReader.readLine())!=null) {
-				Pattern pattern = Pattern.compile("(?<timeStamp>\\d{2}:\\d{2}:\\d{2}\\.\\d{9})\\s+\\*?(?<threadId>0x\\d{7})\\s+mt.\\d{1}\\s+(?<traceType>Entry|Exit)\\s+[><](?<methodName>.*?)V.*");
+			while ((data = bufferedReader.readLine()) != null) {
+				Pattern pattern = Pattern.compile(
+						"(?<timeStamp>\\d{2}:\\d{2}:\\d{2}\\.\\d{9})\\s+\\*?(?<threadId>0x\\d{7})\\s+mt.\\d{1}\\s+(?<traceType>Entry|Exit)\\s+[><](?<methodName>.*?)V.*");
 				Matcher matcher = pattern.matcher(data);
 				if (matcher.find()) {
 					TracePoint tracePoint = new TracePoint();
@@ -102,39 +108,41 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 					tracePoints.add(tracePoint);
 				}
 			}
-		}catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			// TODO: handle exception
-		}catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
-		}finally {
+		} finally {
 			try {
 				bufferedReader.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}  
+		}
 		return tracePoints;
 	}
+
 	@Override
-	public TotalMethodTraceContainer getTraceDataFromFile(ArrayList<TracePoint> tracePointList,String fileName) {
+	public TotalMethodTraceContainer getTraceDataFromFile(ArrayList<TracePoint> tracePointList, String fileName) {
 		TotalMethodTraceContainer totalMethodTraceContainer = new TotalMethodTraceContainer();
-		IndividualMethodTraceContainer individualMethodTraceContainer=null;
+		IndividualMethodTraceContainer individualMethodTraceContainer = null;
 		ArrayList<IndividualMethodTraceContainer> methodTraceList = new ArrayList<IndividualMethodTraceContainer>();
 		totalMethodTraceContainer.setMethodTraceList(methodTraceList);
 		Stack<TracePoint> tracePointStack = new Stack<>();
 		for (TracePoint tracePoint : tracePointList) {
-			if (tracePoint.getType()=="Entry") {
+			if (tracePoint.getType() == "Entry") {
 				tracePointStack.push(tracePoint);
-			}
-			else if(tracePoint.getType()=="Exit"){
+			} else if (tracePoint.getType() == "Exit") {
 				if (tracePoint.getMethodName().equals(tracePointStack.peek().getMethodName())) {
-					individualMethodTraceContainer=new IndividualMethodTraceContainer();
-					individualMethodTraceContainer.setEntry_time(TimeStampToNanosCoverter.toNanoSeconds(tracePointStack.pop().getTimeStamp()));
-					individualMethodTraceContainer.setExit_time(TimeStampToNanosCoverter.toNanoSeconds(tracePoint.getTimeStamp()));
+					individualMethodTraceContainer = new IndividualMethodTraceContainer();
+					individualMethodTraceContainer.setEntry_time(
+							TimeStampToNanosCoverter.toNanoSeconds(tracePointStack.pop().getTimeStamp()));
+					individualMethodTraceContainer
+							.setExit_time(TimeStampToNanosCoverter.toNanoSeconds(tracePoint.getTimeStamp()));
 					individualMethodTraceContainer.setMethodName(tracePoint.getMethodName());
 					methodTraceList.add(individualMethodTraceContainer);
-				}else {
+				} else {
 					totalMethodTraceContainer.setIncompleteMethodList(new ArrayList<TracePoint>(tracePointStack));
 					return totalMethodTraceContainer;
 				}
@@ -144,31 +152,41 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 	}
 
 	@Override
-	public TotalMethodTraceContainer deleteTraceTRCFile(String trcTraceFileName) {
-		//TODO Auto-generated method stub
-		//sairam
-		return null;
+	public boolean deleteTraceTRCFile(String trcTraceFileName) {
+		File trcTraceFile = new File(trcTraceFileName);
+		if (trcTraceFile.exists()) {
+			return trcTraceFile.delete();
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public TotalMethodTraceContainer deleteTraceLogFile(String logtraceFileName) {
-		//TODO Auto-generated method stub
-		//sairam
-		return null;
+	public boolean deleteTraceLogFile(String logtraceFileName) {
+		File logtraceFile = new File(logtraceFileName);
+		if (logtraceFile.exists()) {
+			return logtraceFile.delete();
+		} else {
+			return false;
+		}
 	}
 
 	@Override
-	public TreeMap<String, Integer> generateMethodInvocationCountTable(TotalMethodTraceContainer totalMethodTraceContainer) {
-		// TODO Auto-generated method stub
-		//sairam
-		//sairam code
-		return null;
+	public Map<String, Integer> generateMethodInvocationCountTable(TotalMethodTraceContainer totalMethodTraceContainer) {
+		List<IndividualMethodTraceContainer> methodTraceList = totalMethodTraceContainer.getMethodTraceList();
+		Map<String, Integer> methodInvocationCountTable = new TreeMap<>();
+		
+		for (IndividualMethodTraceContainer individualMethodTraceContainer : methodTraceList) {
+			String methodName = individualMethodTraceContainer.getMethodName();
+			if(!methodInvocationCountTable.containsKey(methodName)) {
+				methodInvocationCountTable.put(methodName, 1);
+			}else {
+				Integer invocationCount = methodInvocationCountTable.get(methodName)+1;
+				methodInvocationCountTable.replace(methodName, invocationCount);
+			}
+			
+		}
+		return methodInvocationCountTable;
 	}
-
-	 
-
-
-
-
 
 }
