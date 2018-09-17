@@ -3,13 +3,17 @@
   <groupId>com.methodtraceanalyser</groupId>
   <artifactId>method_trace_analyser</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+ <maven.compiler.source>1.8</maven.compiler.source>
+ <maven.compiler.target>1.8</maven.compiler.target>
+</properties>
   
-  <repositories>
+  <!-- <repositories>
     <repository>
     <id>terminalfx-repo</id>
     <url>https://github.com/javaterminal/terminalfx/raw/master/releases</url>
     </repository>
-</repositories>
+</repositories> -->
 
 <!-- Add dependency -->
 <dependencies>
@@ -19,11 +23,11 @@
   <version>4.12</version>
   <scope>test</scope>
 </dependency> 
-<dependency>
+<!-- <dependency>
     <groupId>com.kodedu.terminalfx</groupId>
     <artifactId>terminalfx</artifactId>
     <version>1.0.8</version>
-</dependency>
+</dependency> -->
   <dependency>
     <groupId>com.jfoenix</groupId>
     <artifactId>jfoenix</artifactId>
