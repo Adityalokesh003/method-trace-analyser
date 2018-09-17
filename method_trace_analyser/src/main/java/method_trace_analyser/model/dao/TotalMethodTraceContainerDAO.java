@@ -16,10 +16,10 @@ public interface TotalMethodTraceContainerDAO {
 	public TotalMethodTraceContainer deleteTraceTRCFile(String trcTraceFileName);
 	public TotalMethodTraceContainer deleteTraceLogFile(String logtraceFileName);
 	//db part
-	public boolean addToDB(TotalMethodTraceContainer traceContainer);
+	/*public boolean addToDB(TotalMethodTraceContainer traceContainer);
 	public TotalMethodTraceContainer getTraceDataFromDB(String traceFileName);
 	public boolean updateTraceData(TotalMethodTraceContainer traceContainer);
-	public TotalMethodTraceContainer deleteTraceFromDB(String traceFileName);
+	public TotalMethodTraceContainer deleteTraceFromDB(String traceFileName);*/
 	public TreeMap<String, Integer> generateMethodInvocationCountTable(TotalMethodTraceContainer totalMethodTraceContainer);
 	  
 }

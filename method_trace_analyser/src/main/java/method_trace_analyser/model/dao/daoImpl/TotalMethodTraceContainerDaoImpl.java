@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.security.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -13,7 +12,6 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javafx.util.converter.TimeStringConverter;
 import method_trace_analyser.model.bo.IndividualMethodTraceContainer;
 import method_trace_analyser.model.bo.TotalMethodTraceContainer;
 import method_trace_analyser.model.bo.TracePoint;
@@ -87,7 +85,7 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 
 	@Override
 	public ArrayList<TracePoint> getTracePointList(File traceLOGFile) {
-		ArrayList<TracePoint> tracePoints =tracePoints = new ArrayList<>(); 
+		ArrayList<TracePoint> tracePoints  = new ArrayList<>(); 
 		BufferedReader bufferedReader = null;
 		try {
 			bufferedReader = new BufferedReader(new FileReader(traceLOGFile));
@@ -96,7 +94,6 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 				Pattern pattern = Pattern.compile("(?<timeStamp>\\d{2}:\\d{2}:\\d{2}\\.\\d{9})\\s+\\*?(?<threadId>0x\\d{7})\\s+mt.\\d{1}\\s+(?<traceType>Entry|Exit)\\s+[><](?<methodName>.*?)V.*");
 				Matcher matcher = pattern.matcher(data);
 				if (matcher.find()) {
-					
 					TracePoint tracePoint = new TracePoint();
 					tracePoint.setTimeStamp(matcher.group("timeStamp"));
 					tracePoint.setThreadId(matcher.group("threadId"));
@@ -125,7 +122,6 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 		IndividualMethodTraceContainer individualMethodTraceContainer=null;
 		ArrayList<IndividualMethodTraceContainer> methodTraceList = new ArrayList<IndividualMethodTraceContainer>();
 		totalMethodTraceContainer.setMethodTraceList(methodTraceList);
-		List<TracePoint> incompleteMethodList=null;
 		Stack<TracePoint> tracePointStack = new Stack<>();
 		for (TracePoint tracePoint : tracePointList) {
 			if (tracePoint.getType()=="Entry") {
@@ -162,40 +158,14 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 	}
 
 	@Override
-	public boolean addToDB(TotalMethodTraceContainer traceContainer) {
-		//use sqlite
-		//darshini
-		return false;
-	}
-
-	@Override
-	public TotalMethodTraceContainer getTraceDataFromDB(String traceFileName) {
-		// TODO Auto-generated method stub
-		//darshini
-		return null;
-	}
-
-	@Override
-	public TotalMethodTraceContainer deleteTraceFromDB(String traceFileName) {
-		// TODO Auto-generated method stub
-		//darshini
-		return null;
-	}
-
-	@Override
-	public TreeMap<String, Integer> generateMethodInvocationCountTable() {
+	public TreeMap<String, Integer> generateMethodInvocationCountTable(TotalMethodTraceContainer totalMethodTraceContainer) {
 		// TODO Auto-generated method stub
 		//sairam
 		//sairam code
 		return null;
 	}
 
-	@Override
-	public boolean updateTraceData(TotalMethodTraceContainer traceContainer) {
-		// TODO Auto-generated method stub
-		return false;
-		//darshini
-	}
+	 
 
 
 
