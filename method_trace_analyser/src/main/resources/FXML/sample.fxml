@@ -18,8 +18,9 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="method_trace_analyser.controller.MenuBarController">
    <top>
+     
       <VBox prefHeight="27.0" prefWidth="1240.0" BorderPane.alignment="CENTER">
          <children>
             <MenuBar prefWidth="1240.0">
@@ -58,13 +59,13 @@
    <center>
       <AnchorPane prefHeight="542.0" prefWidth="748.0" style="-fx-border-color: #CFCFCF;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TabPane layoutY="3.0" prefHeight="593.0" prefWidth="808.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="3.0" prefHeight="598.0" prefWidth="811.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Graphical View">
                <content>
                   <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="740.0" style="-fx-background-color: #355667;">
                      <children>
-                        <BarChart barGap="8.0" layoutX="11.0" layoutY="6.0" prefHeight="556.0" prefWidth="727.0" style="-fx-background-color: #223E4A;" title="Graphical View of Trace File" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="6.0">
+                        <BarChart barGap="8.0" layoutX="11.0" layoutY="6.0" prefHeight="565.0" prefWidth="809.0" style="-fx-background-color: #223E4A;" title="Graphical View of Trace File" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <xAxis>
                             <CategoryAxis label="Methods" side="BOTTOM" tickLabelFill="WHITE" />
                           </xAxis>
@@ -72,7 +73,6 @@
                             <NumberAxis focusTraversable="true" label="Number of invokation times" side="LEFT" tickLabelFill="WHITE" upperBound="10.0" />
                           </yAxis>
                         </BarChart>
-                        <ScrollBar layoutX="11.0" layoutY="543.0" prefHeight="14.0" prefWidth="783.0" visibleAmount="100.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -81,7 +81,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="909.0" style="-fx-background-color: #355667;">
                      <children>
-                        <TableView layoutX="18.0" layoutY="51.0" prefHeight="331.0" prefWidth="703.0">
+                        <TableView layoutX="18.0" layoutY="51.0" prefHeight="565.0" prefWidth="809.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn prefWidth="88.0" text="ID" />
                             <TableColumn prefWidth="261.0" text="Method" />
@@ -109,7 +109,7 @@
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="3.0" prefHeight="596.0" prefWidth="208.0" spacing="12.0" style="-fx-background-color: #223E4A;">
+            <VBox alignment="TOP_CENTER" layoutX="3.0" prefHeight="596.0" prefWidth="211.0" spacing="12.0" style="-fx-background-color: #223E4A;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Reset" />
                   <Button mnemonicParsing="false" text="Upload Trace File" />
