@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox prefHeight="27.0" prefWidth="1240.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar prefWidth="1240.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Open trace file(s) in New Window" />                  
+                    <MenuItem mnemonicParsing="false" text="Open trace file(s) in existing window" />
+                    <MenuItem mnemonicParsing="false" text="Save to folder" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Compare">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Find Anomalies" />
+                        <MenuItem mnemonicParsing="false" text="Compare stackTrace between two trace files" />
+                        <MenuItem mnemonicParsing="false" text="Compare CodeFlow between two trace files" />
+                        <MenuItem mnemonicParsing="false" text="Compare two trace files,One from failing and passing case each" />
+                    </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="143.0" prefWidth="1240.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="410.0" prefWidth="921.0" style="-fx-border-color: #CFCFCF;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane layoutY="3.0" prefHeight="474.0" prefWidth="958.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Graphical View">
+               <content>
+                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" style="-fx-background-color: #355667;">
+                     <children>
+                        <BarChart barGap="8.0" layoutX="11.0" layoutY="59.0" prefHeight="331.0" prefWidth="736.0" style="-fx-background-color: #223E4A;" title="Graphical View of Trace File">
+                          <xAxis>
+                            <CategoryAxis label="Methods" side="BOTTOM" tickLabelFill="WHITE" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis focusTraversable="true" label="Number of invokation times" side="LEFT" tickLabelFill="WHITE" upperBound="10.0" />
+                          </yAxis>
+                        </BarChart>
+                        <ScrollBar layoutY="427.0" prefHeight="14.0" prefWidth="980.0" visibleAmount="100.0" />
+                        <VBox alignment="TOP_CENTER" layoutX="760.0" layoutY="59.0" prefHeight="334.0" prefWidth="211.0" spacing="11.0" style="-fx-background-color: #223E4A;">
+                           <children>
+                              <Button mnemonicParsing="false" text="Reset" />
+                              <Button mnemonicParsing="false" text="upload trace file" />
+                              <Button mnemonicParsing="false" text="create trace file" />
+                              <Button mnemonicParsing="false" text="save to folder" />
+                              <Button mnemonicParsing="false" text="save" />
+                              <Button mnemonicParsing="false" text="review" />
+                              <Button mnemonicParsing="false" text="clear" />
+                           </children>
+                           <effect>
+                              <Lighting bumpInput="$null">
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </effect>
+                           <padding>
+                              <Insets top="35.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+          <Tab text="Tabular View">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="909.0" style="-fx-background-color: #355667;">
+                     <children>
+                        <TableView layoutX="18.0" layoutY="51.0" prefHeight="331.0" prefWidth="703.0">
+                          <columns>
+                            <TableColumn prefWidth="88.0" text="ID" />
+                            <TableColumn prefWidth="261.0" text="Method" />
+                              <TableColumn prefWidth="352.0" text="Invokation times" />
+                          </columns>
+                        </TableView>
+                        <ScrollBar layoutX="959.0" layoutY="10.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0" style="-fx-background-color: #223E4A;" visibleAmount="100.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Method overview">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #355667;" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
+
+   </center>
+   <left>
+      <VBox prefHeight="479.0" prefWidth="281.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="334.0" prefWidth="211.0" spacing="12.0" style="-fx-background-color: #223E4A;">
+               <children>
+                  <Button mnemonicParsing="false" text="Reset" />
+                  <Button mnemonicParsing="false" text="Upload Trace File" />
+                  <Button mnemonicParsing="false" text="Create Trace File" />
+                  <Button mnemonicParsing="false" text="Save to folder" />
+                  <Button mnemonicParsing="false" text="Save" />
+                  <Button mnemonicParsing="false" text="Review" />
+                  <Button mnemonicParsing="false" text="Clear" />
+               </children>
+               <padding>
+                  <Insets top="35.0" />
+               </padding>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>
