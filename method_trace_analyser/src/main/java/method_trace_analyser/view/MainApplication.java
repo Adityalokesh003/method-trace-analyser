@@ -2,7 +2,6 @@ package method_trace_analyser.view;
 
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,7 +13,7 @@ public class MainApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/FXML/sample.fxml"));
+			BorderPane root = FXMLLoader.load(getClass().getResource("/FXML/sample.fxml"));
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("/css/main.css").toExternalForm());
 			primaryStage.setScene(scene);
@@ -22,7 +21,6 @@ public class MainApplication extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 			e.getMessage();
-			 
 		}
 	  
 	}
