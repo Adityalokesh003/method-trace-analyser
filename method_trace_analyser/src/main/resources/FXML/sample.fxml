@@ -26,19 +26,15 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Open trace file(s) in New Window" />                  
-                    <MenuItem mnemonicParsing="false" text="Open trace file(s) in existing window" />
-                    <MenuItem mnemonicParsing="false" text="Save to folder" />
+                    <MenuItem mnemonicParsing="false" text="Open folder..." />                  
+                    <MenuItem mnemonicParsing="false" text="Recent..." />
+                    <MenuItem mnemonicParsing="false" text="Exit" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                  	<MenuItem mnemonicParsing="false" text="Update trace files" />
+                  	<MenuItem mnemonicParsing="false" text="Delete trace files" />
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="Compare">
@@ -49,6 +45,11 @@
                         <MenuItem mnemonicParsing="false" text="Compare two trace files,One from failing and passing case each" />
                     </items>
                   </Menu>
+                  <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
               </menus>
             </MenuBar>
          </children>
