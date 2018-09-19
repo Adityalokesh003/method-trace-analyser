@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTreeView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -39,9 +40,7 @@
                 </Menu>
                   <Menu mnemonicParsing="false" text="Compare">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Find Anomalies" />
-                        <MenuItem mnemonicParsing="false" text="Compare stackTrace between two trace files" />
-                        <MenuItem mnemonicParsing="false" text="Compare CodeFlow between two trace files" />
+                        <MenuItem mnemonicParsing="false" text="Compare CodeFlow ,stackTrace between two trace files" />
                         <MenuItem mnemonicParsing="false" text="Compare two trace files,One from failing and passing case each" />
                     </items>
                   </Menu>
@@ -62,17 +61,16 @@
         <tabs>
           <Tab text="Graphical View">
                <content>
-                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="740.0" style="-fx-background-color: #355667;">
+                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="740.0">
                      <children>
-                        <BarChart barGap="8.0" layoutX="11.0" layoutY="6.0" prefHeight="556.0" prefWidth="727.0" style="-fx-background-color: #223E4A;" title="Graphical View of Trace File" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="6.0">
+                        <BarChart barGap="8.0" layoutX="11.0" layoutY="6.0" prefHeight="556.0" prefWidth="727.0" title="Graphical View of Trace File" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="6.0">
                           <xAxis>
                             <CategoryAxis label="Methods" side="BOTTOM" tickLabelFill="WHITE" />
                           </xAxis>
                           <yAxis>
-                            <NumberAxis focusTraversable="true" label="Number of invokation times" side="LEFT" tickLabelFill="WHITE" upperBound="10.0" />
+                            <NumberAxis focusTraversable="true" label="Number of invokation times" side="LEFT" upperBound="10.0" />
                           </yAxis>
                         </BarChart>
-                        <ScrollBar layoutX="11.0" layoutY="543.0" prefHeight="14.0" prefWidth="783.0" visibleAmount="100.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -104,23 +102,47 @@
 
    </center>
    <left>
-      <VBox prefHeight="596.0" prefWidth="218.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="596.0" prefWidth="218.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXTreeView prefHeight="604.0" prefWidth="218.0" />
+         </children></VBox>
    </left>
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="3.0" prefHeight="596.0" prefWidth="208.0" spacing="12.0" style="-fx-background-color: #223E4A;">
+            <VBox alignment="TOP_CENTER" layoutX="3.0" prefHeight="596.0" prefWidth="208.0" spacing="12.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Reset" />
-                  <Button mnemonicParsing="false" text="Upload Trace File" />
-                  <Button mnemonicParsing="false" text="Create Trace File" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Save to folder" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Save" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Review" />
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Clear" />
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Reset">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin></Button>
+                  <Button mnemonicParsing="false" text="Upload Trace File">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin></Button>
+                  <Button mnemonicParsing="false" text="Create Trace File">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin></Button>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Save to folder">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin></Button>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Save">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin></Button>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Review">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin></Button>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Clear">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin></Button>
                </children>
                <padding>
-                  <Insets top="35.0" />
+                  <Insets top="120.0" />
                </padding>
             </VBox>
          </children>
