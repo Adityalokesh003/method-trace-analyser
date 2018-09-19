@@ -14,11 +14,11 @@ import javafx.scene.control.TreeView;
 public class MainController implements Initializable{
 	@FXML
 	private MenuItem open_folder;
+	@FXML
+	private TreeView<String> traceExplorer;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//add your tree view items here
-		//hint use your TraceUtil class
-		//first oka files matram add chey tarvta TraceMethod add cheyyochhu
+		traceExplorer.setRoot(LeftTreeViewController.initTreeView());
 	}
 	
 	public void handleMenuOpenFolder(ActionEvent actionEvent) {

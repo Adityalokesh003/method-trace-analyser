@@ -14,6 +14,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
@@ -104,7 +105,10 @@
 
    </center>
    <left>
-      <VBox prefHeight="596.0" prefWidth="218.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="596.0" prefWidth="218.0" BorderPane.alignment="CENTER">
+         <children>
+            <TreeView fx:id="traceExplorer" prefHeight="605.0" prefWidth="218.0" />
+         </children></VBox>
    </left>
    <right>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
