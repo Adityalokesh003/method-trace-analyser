@@ -9,11 +9,12 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TreeView;
 
 public class MainController implements Initializable{
 	@FXML
 	private MenuItem open_folder;
-
+	private  TreeView <String> treeView;	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		//add your tree view items here
@@ -24,7 +25,7 @@ public class MainController implements Initializable{
 	
 	public void handleMenuBar(ActionEvent actionEvent) {
 		MenuBarController.fileOpenFolderAction(actionEvent);
-		 
+		treeView.setRoot(LeftTreeViewController.initTreeView());
 	}
 	
 
