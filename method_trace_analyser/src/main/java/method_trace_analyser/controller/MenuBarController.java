@@ -9,14 +9,13 @@ import javafx.stage.DirectoryChooser;
 
 public class MenuBarController {
 	
-	@FXML
-	private Button file_openFolder;
-	
-	public void fileOpenFolderAction(ActionEvent actionEvent) {
+	public static void fileOpenFolderAction(ActionEvent actionEvent) {
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 		directoryChooser.setTitle("Open Trace Folder");
 		File selectedDirectory = directoryChooser.showDialog(null);
-		  
+		if (selectedDirectory.exists()) {
+			System.out.println("yey");
+		}
 	}
 	 
 	
