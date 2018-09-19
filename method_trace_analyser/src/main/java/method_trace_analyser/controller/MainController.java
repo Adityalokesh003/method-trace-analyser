@@ -24,4 +24,8 @@ public class MainController implements Initializable{
 	public void handleMenuOpenFolder(ActionEvent actionEvent) {
 		MenuBarController.fileOpenFolderAction();
 	}
+	
+	public void handleMenuExit(ActionEvent actionEvent) {
+		MenuBarController.fileExitAction();
+	}
 }

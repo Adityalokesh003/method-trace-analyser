@@ -2,9 +2,7 @@ package method_trace_analyser.controller;
 
 import java.io.File;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.application.Platform;
 import javafx.stage.DirectoryChooser;
 
 public class MenuBarController {
@@ -18,6 +16,10 @@ public class MenuBarController {
 		}
 	}
 	 
+	public static void fileExitAction() {
+		 Platform.exit();
+		 System.exit(0);
+	}
 	
 
 }
