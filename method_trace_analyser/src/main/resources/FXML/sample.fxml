@@ -15,140 +15,216 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <VBox prefHeight="27.0" prefWidth="1240.0" BorderPane.alignment="CENTER">
-         <children>
-            <MenuBar prefWidth="1240.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Open folder..." />                  
-                    <MenuItem mnemonicParsing="false" text="Recent..." />
-                    <MenuItem mnemonicParsing="false" text="Exit" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                  	<MenuItem mnemonicParsing="false" text="Update trace files" />
-                  	<MenuItem mnemonicParsing="false" text="Delete trace files" />
-                  </items>
-                </Menu>
-                  <Menu mnemonicParsing="false" text="Compare">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Compare CodeFlow ,stackTrace between two trace files" />
-                        <MenuItem mnemonicParsing="false" text="Compare two trace files,One from failing and passing case each" />
-                    </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-         </children>
-      </VBox>
-   </top>
-   <center>
-      <AnchorPane prefHeight="542.0" prefWidth="748.0" style="-fx-border-color: #CFCFCF;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <TabPane layoutY="3.0" prefHeight="593.0" prefWidth="808.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Graphical View">
-               <content>
-                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="740.0">
-                     <children>
-                        <BarChart barGap="8.0" layoutX="11.0" layoutY="6.0" prefHeight="556.0" prefWidth="727.0" title="Graphical View of Trace File" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="6.0">
-                          <xAxis>
-                            <CategoryAxis label="Methods" side="BOTTOM" tickLabelFill="WHITE" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis focusTraversable="true" label="Number of invokation times" side="LEFT" upperBound="10.0" />
-                          </yAxis>
-                        </BarChart>
-                     </children>
-                  </AnchorPane>
-               </content>
-          </Tab>
-          <Tab text="Tabular View">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="909.0" style="-fx-background-color: #355667;">
-                     <children>
-                        <TableView layoutX="18.0" layoutY="51.0" prefHeight="331.0" prefWidth="703.0">
-                          <columns>
-                            <TableColumn prefWidth="88.0" text="ID" />
-                            <TableColumn prefWidth="261.0" text="Method" />
-                              <TableColumn prefWidth="352.0" text="Invokation times" />
-                          </columns>
-                        </TableView>
-                        <ScrollBar layoutX="959.0" layoutY="10.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0" style="-fx-background-color: #223E4A;" visibleAmount="100.0" />
-                     </children></AnchorPane>
-            </content>
-          </Tab>
-            <Tab text="Method overview">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="493.0" prefWidth="740.0" style="-fx-background-color: #355667;" />
-              </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </children>
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0"
+	prefWidth="1240.0" xmlns="http://javafx.com/javafx/8.0.171"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="method_trace_analyser.controller.MainController">
+	<top>
 
-   </center>
-   <left>
-      <VBox prefHeight="596.0" prefWidth="218.0" BorderPane.alignment="CENTER">
-         <children>
-            <JFXTreeView prefHeight="604.0" prefWidth="218.0" />
-         </children></VBox>
-   </left>
-   <right>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox alignment="TOP_CENTER" layoutX="3.0" prefHeight="596.0" prefWidth="208.0" spacing="12.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Reset">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin></Button>
-                  <Button mnemonicParsing="false" text="Upload Trace File">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin></Button>
-                  <Button mnemonicParsing="false" text="Create Trace File">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin></Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Save to folder">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin></Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Save">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin></Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Review">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin></Button>
-                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Clear">
-                     <VBox.margin>
-                        <Insets bottom="20.0" />
-                     </VBox.margin></Button>
-               </children>
-               <padding>
-                  <Insets top="120.0" />
-               </padding>
-            </VBox>
-         </children>
-      </AnchorPane>
-   </right>
-   <bottom>
-      <Label prefHeight="17.0" prefWidth="1237.0" BorderPane.alignment="CENTER" />
-   </bottom>
+		<VBox prefHeight="27.0" prefWidth="1240.0"
+			BorderPane.alignment="CENTER">
+			<children>
+				<MenuBar prefWidth="1240.0">
+					<menus>
+						<Menu mnemonicParsing="false" text="File">
+							<items>
+								<MenuItem fx:id="open_folder" mnemonicParsing="false"
+									onAction="#handleMenuOpenFolder" text="Open folder..." />
+								<MenuItem mnemonicParsing="false" text="Recent..." />
+								<MenuItem mnemonicParsing="false" text="Exit" />
+							</items>
+						</Menu>
+						<Menu mnemonicParsing="false" text="Edit">
+							<items>
+								<MenuItem mnemonicParsing="false"
+									text="Update trace files" />
+								<MenuItem mnemonicParsing="false"
+									text="Delete trace files" />
+							</items>
+						</Menu>
+						<Menu mnemonicParsing="false" text="Compare">
+							<items>
+								<MenuItem mnemonicParsing="false"
+									text="Compare CodeFlow ,stackTrace between two trace files" />
+								<MenuItem mnemonicParsing="false"
+									text="Compare two trace files,One from failing and passing case each" />
+							</items>
+						</Menu>
+						<Menu mnemonicParsing="false" text="Help">
+							<items>
+								<MenuItem mnemonicParsing="false" text="About" />
+							</items>
+						</Menu>
+					</menus>
+				</MenuBar>
+			</children>
+		</VBox>
+	</top>
+	<center>
+		<AnchorPane prefHeight="542.0" prefWidth="748.0"
+			style="-fx-border-color: #CFCFCF;" BorderPane.alignment="CENTER"
+			xmlns="http://javafx.com/javafx/8.0.171"
+			xmlns:fx="http://javafx.com/fxml/1">
+			<children>
+				<TabPane layoutY="3.0" prefHeight="598.0" prefWidth="811.0"
+					tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0"
+					AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+					AnchorPane.topAnchor="0.0">
+					<tabs>
+						<Tab text="Graphical View">
+							<content>
+								<AnchorPane maxHeight="1.7976931348623157E308"
+									maxWidth="1.7976931348623157E308" minHeight="0.0"
+									minWidth="0.0" prefHeight="472.0" prefWidth="740.0">
+									<children>
+										<BarChart barGap="8.0" layoutX="11.0" layoutY="6.0"
+											prefHeight="556.0" prefWidth="727.0"
+											title="Graphical View of Trace File"
+											AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="11.0"
+											AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="6.0">
+
+											<BarChart barGap="8.0" layoutX="11.0" layoutY="6.0"
+												prefHeight="565.0" prefWidth="809.0"
+												style="-fx-background-color: #223E4A;"
+												title="Graphical View of Trace File"
+												AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+												AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+												<xAxis>
+													<CategoryAxis label="Methods" side="BOTTOM"
+														tickLabelFill="WHITE" />
+												</xAxis>
+												<yAxis>
+													<NumberAxis focusTraversable="true"
+														label="Number of invokation times" side="LEFT"
+														upperBound="10.0" />
+												</yAxis>
+											</BarChart>
+									</children>
+								</AnchorPane>
+							</content>
+						</Tab>
+						<Tab text="Tabular View">
+							<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0"
+									prefHeight="445.0" prefWidth="909.0"
+									style="-fx-background-color: #355667;">
+									<children>
+										<TableView layoutX="18.0" layoutY="51.0"
+											prefHeight="565.0" prefWidth="809.0"
+											AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+											AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+											<columns>
+												<TableColumn prefWidth="88.0" text="ID" />
+												<TableColumn prefWidth="261.0" text="Method" />
+												<TableColumn prefWidth="352.0"
+													text="Invokation times" />
+											</columns>
+										</TableView>
+										<ScrollBar layoutX="959.0" layoutY="10.0"
+											orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0"
+											style="-fx-background-color: #223E4A;" visibleAmount="100.0" />
+									</children>
+								</AnchorPane>
+							</content>
+						</Tab>
+						<Tab text="Method overview">
+							<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0"
+									prefHeight="493.0" prefWidth="740.0"
+									style="-fx-background-color: #355667;" />
+							</content>
+						</Tab>
+					</tabs>
+				</TabPane>
+			</children>
+		</AnchorPane>
+
+	</center>
+	<left>
+		<VBox prefHeight="596.0" prefWidth="218.0"
+			BorderPane.alignment="CENTER">
+			<children>
+
+				<JFXTreeView prefHeight="604.0" prefWidth="218.0" />
+
+				<TreeView fx:id="traceExplorer" prefHeight="605.0"
+					prefWidth="218.0" />
+
+			</children>
+		</VBox>
+	</left>
+	<right>
+		<AnchorPane prefHeight="200.0" prefWidth="200.0"
+			BorderPane.alignment="CENTER">
+			<children>
+
+				<VBox alignment="TOP_CENTER" layoutX="3.0" prefHeight="596.0"
+					prefWidth="208.0" spacing="12.0">
+
+					<VBox alignment="TOP_CENTER" layoutX="3.0" prefHeight="596.0"
+						prefWidth="211.0" spacing="12.0"
+						style="-fx-background-color: #223E4A;"
+						AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+						AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+						<children>
+							<Button mnemonicParsing="false" prefHeight="25.0"
+								prefWidth="108.0" text="Reset">
+								<VBox.margin>
+									<Insets bottom="20.0" />
+								</VBox.margin>
+							</Button>
+							<Button mnemonicParsing="false" text="Upload Trace File">
+								<VBox.margin>
+									<Insets bottom="20.0" />
+								</VBox.margin>
+							</Button>
+							<Button mnemonicParsing="false" text="Create Trace File">
+								<VBox.margin>
+									<Insets bottom="20.0" />
+								</VBox.margin>
+							</Button>
+							<Button mnemonicParsing="false" prefHeight="25.0"
+								prefWidth="104.0" text="Save to folder">
+								<VBox.margin>
+									<Insets bottom="20.0" />
+								</VBox.margin>
+							</Button>
+							<Button mnemonicParsing="false" prefHeight="25.0"
+								prefWidth="105.0" text="Save">
+								<VBox.margin>
+									<Insets bottom="20.0" />
+								</VBox.margin>
+							</Button>
+							<Button mnemonicParsing="false" prefHeight="25.0"
+								prefWidth="104.0" text="Review">
+								<VBox.margin>
+									<Insets bottom="20.0" />
+								</VBox.margin>
+							</Button>
+							<Button mnemonicParsing="false" prefHeight="25.0"
+								prefWidth="105.0" text="Clear">
+								<VBox.margin>
+									<Insets bottom="20.0" />
+								</VBox.margin>
+							</Button>
+						</children>
+						<padding>
+							<Insets top="120.0" />
+						</padding>
+					</VBox>
+			</children>
+		</AnchorPane>
+	</right>
+	<bottom>
+		<Label prefHeight="17.0" prefWidth="1237.0"
+			BorderPane.alignment="CENTER" />
+	</bottom>
 </BorderPane>

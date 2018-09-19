@@ -1,10 +1,15 @@
 package method_trace_analyser;
 
+import java.io.File;
+import java.util.Arrays;
+
+import method_trace_analyser.util.TraceUtil;
+
 public class Test1 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("some testing goes here");
+		 
+		System.out.println(Arrays.toString(TraceUtil.getLogFiles()));
 
 	}
 
