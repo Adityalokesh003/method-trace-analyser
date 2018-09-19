@@ -4,14 +4,13 @@ import java.io.File;
 
 public class TraceUtil {
 	public static String[] getLogFiles() {
-		String[] fileNames=null;
+		String[] fileNames = null;
 		try {
-			File file=new File("/tracefiles/LOG");
-			 fileNames=file.list();
-	
-		}catch(Exception e) {
+			File file = new File(System.getProperty("user.dir")+"\\src\\main\\resources\\tracefiles\\LOG");
+			fileNames = file.list();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return fileNames;
-		}
+	}
 }
