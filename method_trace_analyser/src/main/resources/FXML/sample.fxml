@@ -27,7 +27,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem fx:id="open_folder" mnemonicParsing="false" onAction="#actionMethod" text="Open folder..." />                  
+                    <MenuItem fx:id="open_folder" mnemonicParsing="false" onAction="#handleMenuBar" text="Open folder..." />                  
                     <MenuItem mnemonicParsing="false" text="Recent..." />
                     <MenuItem mnemonicParsing="false" text="Exit" />
                   </items>

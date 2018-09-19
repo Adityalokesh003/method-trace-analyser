@@ -9,7 +9,7 @@ import javafx.stage.DirectoryChooser;
 
 public class MenuBarController {
 	
-	public static void fileOpenFolderAction(ActionEvent actionEvent) {
+	public static void fileOpenFolderAction() {
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 		directoryChooser.setTitle("Open Trace Folder");
 		File selectedDirectory = directoryChooser.showDialog(null);

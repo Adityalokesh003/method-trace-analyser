@@ -16,11 +16,6 @@ public interface TotalMethodTraceContainerDAO {
 	public TotalMethodTraceContainer getTraceDataFromFile(ArrayList<TracePoint> tracePointList,String fileName);
 	public boolean deleteTraceTRCFile(String trcTraceFileName);
 	public boolean deleteTraceLogFile(String logtraceFileName);
-	//db part
-	/*public boolean addToDB(TotalMethodTraceContainer traceContainer);
-	public TotalMethodTraceContainer getTraceDataFromDB(String traceFileName);
-	public boolean updateTraceData(TotalMethodTraceContainer traceContainer);
-	public TotalMethodTraceContainer deleteTraceFromDB(String traceFileName);*/
 	public Map<String, Integer> generateMethodInvocationCountTable(TotalMethodTraceContainer totalMethodTraceContainer);
 	  
 }

@@ -23,8 +23,15 @@ public class MainController implements Initializable{
 	}
 	
 	public void handleMenuBar(ActionEvent actionEvent) {
-		MenuBarController.fileOpenFolderAction(actionEvent);
-		 
+		open_folder.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				MenuBarController.fileOpenFolderAction();
+				
+			}
+		});
+		
 	}
 	
 
