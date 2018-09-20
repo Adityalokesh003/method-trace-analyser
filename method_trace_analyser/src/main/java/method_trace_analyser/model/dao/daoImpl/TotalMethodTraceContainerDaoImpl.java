@@ -15,10 +15,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import method_trace_analyser.model.bo.IndividualMethodTraceContainer;
+import method_trace_analyser.model.bo.StackTracePoint;
 import method_trace_analyser.model.bo.TotalMethodTraceContainer;
 import method_trace_analyser.model.bo.TracePoint;
 import method_trace_analyser.model.dao.TotalMethodTraceContainerDAO;
-import method_trace_analyser.util.TimeStampToNanosCoverter;
+import method_trace_analyser.util.TraceUtil;
 
 public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContainerDAO {
 
@@ -94,16 +95,15 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 		try {
 			bufferedReader = new BufferedReader(new FileReader(traceLOGFile));
 			String data;
+			Pattern pattern = Pattern.compile("(?<timeStamp>\\d{2}:\\d{2}:\\d{2}\\.\\d{9})\\s+\\*?(?<threadId>0x\\d{7})\\s+.+\\s+(?<traceType>Entry|Exit|Event)\\s+[><]?(?<traceEntry>(.*?\\sbytecode|.*?\\(.*?\\.java:\\d+\\))).*?");
 			while ((data = bufferedReader.readLine()) != null) {
-				Pattern pattern = Pattern.compile(
-						"(?<timeStamp>\\d{2}:\\d{2}:\\d{2}\\.\\d{9})\\s+\\*?(?<threadId>0x\\d{7})\\s+mt.\\d{1}\\s+(?<traceType>Entry|Exit)\\s+[><](?<methodName>.*?)V.*");
 				Matcher matcher = pattern.matcher(data);
 				if (matcher.find()) {
 					TracePoint tracePoint = new TracePoint();
 					tracePoint.setTimeStamp(matcher.group("timeStamp"));
 					tracePoint.setThreadId(matcher.group("threadId"));
-					tracePoint.setType(matcher.group("type"));
-					tracePoint.setMethodName(matcher.group("methodName"));
+					tracePoint.setType(matcher.group("traceType"));
+					tracePoint.setTraceEntry(matcher.group("traceEntry"));
 					tracePoints.add(tracePoint);
 				}
 			}
@@ -123,23 +123,43 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 	}
 
 	@Override
-	public TotalMethodTraceContainer getTraceDataFromFile(ArrayList<TracePoint> tracePointList, String fileName) {
+	public TotalMethodTraceContainer getTraceDataFromFile(ArrayList<TracePoint> tracePointList, String fileName)throws Exception {
 		TotalMethodTraceContainer totalMethodTraceContainer = new TotalMethodTraceContainer();
+		totalMethodTraceContainer.setFileName(fileName);
 		IndividualMethodTraceContainer individualMethodTraceContainer = null;
 		ArrayList<IndividualMethodTraceContainer> methodTraceList = new ArrayList<IndividualMethodTraceContainer>();
 		totalMethodTraceContainer.setMethodTraceList(methodTraceList);
 		Stack<TracePoint> tracePointStack = new Stack<>();
+		Map<String,List<StackTracePoint>> stackTraceMap = new TreeMap<>();
+		totalMethodTraceContainer.setStackTraceMap(stackTraceMap);
+		List<StackTracePoint> stackTracePoints = new ArrayList<>();
 		for (TracePoint tracePoint : tracePointList) {
-			if (tracePoint.getType() == "Entry") {
+			if (tracePoint.getType().equals("Entry")) {
 				tracePointStack.push(tracePoint);
-			} else if (tracePoint.getType() == "Exit") {
-				if (tracePoint.getMethodName().equals(tracePointStack.peek().getMethodName())) {
+			}else if (tracePoint.getType().equals("Event")) {
+				StackTracePoint stackTracePoint =  new StackTracePoint();
+				stackTracePoint.setTimestamp(TraceUtil.toNanoSeconds(tracePoint.getTimeStamp()));
+				String uniqueMethodName = tracePointStack.peek().getTraceEntry()+tracePointStack.peek().getTimeStamp();
+					if (!totalMethodTraceContainer.getStackTraceMap().containsKey(uniqueMethodName)) {
+						totalMethodTraceContainer.getStackTraceMap().put(uniqueMethodName, stackTracePoints);
+					}
+					Pattern pattern = Pattern.compile("\\[(?<sNo>\\d+?)\\]\\s(?<methodName>.*?)\\s*?\\((?<javaFileName>.*?):(?<lineNumber>\\d+)\\)");
+					Matcher matcher = pattern.matcher(tracePoint.getTraceEntry());
+					if (matcher.find()) {
+						stackTracePoint.setsNo(Integer.parseInt(matcher.group("sNo")));
+						stackTracePoint.setMethodName(matcher.group("methodName"));
+						stackTracePoint.setJavaFileName(matcher.group("javaFileName"));
+						stackTracePoint.setLineNumber(Integer.parseInt(matcher.group("lineNumber")));
+					}
+					totalMethodTraceContainer.getStackTraceMap().get(uniqueMethodName).add(stackTracePoint);
+				
+			} else if (tracePoint.getType().equals("Exit")) {
+				 
+				if (tracePoint.getTraceEntry().equals(tracePointStack.peek().getTraceEntry())) {
 					individualMethodTraceContainer = new IndividualMethodTraceContainer();
-					individualMethodTraceContainer.setEntry_time(
-							TimeStampToNanosCoverter.toNanoSeconds(tracePointStack.pop().getTimeStamp()));
-					individualMethodTraceContainer
-							.setExit_time(TimeStampToNanosCoverter.toNanoSeconds(tracePoint.getTimeStamp()));
-					individualMethodTraceContainer.setMethodName(tracePoint.getMethodName());
+					individualMethodTraceContainer.setEntry_time(TraceUtil.toNanoSeconds(tracePointStack.pop().getTimeStamp()));
+					individualMethodTraceContainer.setExit_time(TraceUtil.toNanoSeconds(tracePoint.getTimeStamp()));
+					individualMethodTraceContainer.setMethodName(tracePoint.getTraceEntry());
 					methodTraceList.add(individualMethodTraceContainer);
 				} else {
 					totalMethodTraceContainer.setIncompleteMethodList(new ArrayList<TracePoint>(tracePointStack));
@@ -171,19 +191,20 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 	}
 
 	@Override
-	public Map<String, Integer> generateMethodInvocationCountTable(TotalMethodTraceContainer totalMethodTraceContainer) {
+	public Map<String, Integer> generateMethodInvocationCountTable(
+			TotalMethodTraceContainer totalMethodTraceContainer) {
 		List<IndividualMethodTraceContainer> methodTraceList = totalMethodTraceContainer.getMethodTraceList();
 		Map<String, Integer> methodInvocationCountTable = new TreeMap<>();
-		
+
 		for (IndividualMethodTraceContainer individualMethodTraceContainer : methodTraceList) {
 			String methodName = individualMethodTraceContainer.getMethodName();
-			if(!methodInvocationCountTable.containsKey(methodName)) {
+			if (!methodInvocationCountTable.containsKey(methodName)) {
 				methodInvocationCountTable.put(methodName, 1);
-			}else {
-				Integer invocationCount = methodInvocationCountTable.get(methodName)+1;
+			} else {
+				Integer invocationCount = methodInvocationCountTable.get(methodName) + 1;
 				methodInvocationCountTable.replace(methodName, invocationCount);
 			}
-			
+
 		}
 		return methodInvocationCountTable;
 	}
