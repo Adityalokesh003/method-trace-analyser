@@ -109,14 +109,16 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 			}
 		} catch (FileNotFoundException e) {
 			// TODO: handle exception
-		} catch (Exception e) {
+			System.out.println("File not found Exception");
+		} catch (Exception e) {System.out.println("EXee");
 			// TODO: handle exception
+		e.printStackTrace();
 		} finally {
 			try {
 				bufferedReader.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("closing exc");e.printStackTrace();
 			}
 		}
 		return tracePoints;

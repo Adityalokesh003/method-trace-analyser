@@ -1,6 +1,6 @@
 package method_trace_analyser;
 
-import java.io.File;
+
 import java.util.Arrays;
 
 import method_trace_analyser.util.TraceUtil;
