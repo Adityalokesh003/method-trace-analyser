@@ -10,6 +10,7 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -53,13 +54,19 @@ public class TabPaneController {
 		return graphicalBarChart;
 	}
 	
-	public static TableView<Map<String, Integer>> getTableView() {
-		
-		
-		
-		
-		
-		return null;
+	public static TableView getTableView(String traceLOGFileName) throws Exception {
+		TotalMethodTraceContainerDAO totalMethodTraceContaierDao = TotalMethodTraceContainerDaoFactory.getTotalMethodTraceContaierDao();
+		File traceLOGFile=new File(System.getProperty("user.dir")+"\\src\\main\\resources\\tracefiles\\LOG\\test8.log");
+		ArrayList<TracePoint> tracePointList = totalMethodTraceContaierDao.getTracePointList(traceLOGFile);
+		TotalMethodTraceContainer totalMethodTraceContainer = totalMethodTraceContaierDao.getTraceDataFromFile(tracePointList, traceLOGFileName);
+		Map<String, Integer> methodInvocationCountTable = totalMethodTraceContaierDao.generateMethodInvocationCountTable(totalMethodTraceContainer);
+		TableView tableView = new TableView();
+		tableView.setEditable(true);
+		TableColumn threadId = new TableColumn("Thread Id");
+	    TableColumn methodName = new TableColumn("MethodName");
+	    TableColumn invocationTimes = new TableColumn("Invocation Times");
+	    tableView.getColumns().addAll(threadId, methodName, invocationTimes);
+		return tableView;
 	}
 
 }

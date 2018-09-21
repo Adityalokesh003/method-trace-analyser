@@ -62,16 +62,9 @@
 					<tabs>
 						<Tab text="Graphical View">
 							<content>
-								<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="740.0">
+								<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="740.0" fx:id="barchartAnchor">
 									<children>
-										<BarChart barGap="8.0" layoutX="11.0" layoutY="6.0" prefHeight="565.0" prefWidth="820.0" title="Graphical View of Trace File" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-											<xAxis>
-												<CategoryAxis label="Methods" side="BOTTOM" tickLabelFill="WHITE" />
-											</xAxis>
-											<yAxis>
-												<NumberAxis focusTraversable="true" label="Number of invokation times" side="LEFT" upperBound="10.0" />
-											</yAxis>
-										</BarChart>
+										 
 									</children>
 								</AnchorPane>
 							</content>
@@ -80,7 +73,7 @@
 							<content>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="909.0" style="-fx-background-color: #355667;">
 									<children>
-										<TableView layoutX="18.0" layoutY="51.0" prefHeight="565.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+										<TableView fx:id="tableView" layoutX="18.0" layoutY="51.0" prefHeight="565.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 											<columns>
 												<TableColumn prefWidth="88.0" text="ID" />
 												<TableColumn prefWidth="261.0" text="Method" />

@@ -14,41 +14,29 @@ import method_trace_analyser.util.TraceUtil;
 
 public class LeftTreeViewController {
 
-	public static TreeItem<String> initTreeView() {
+	public static TreeItem<String> initTreeView() throws Exception {
 		TreeItem<String> root = new TreeItem<>("Trace Explorer");
 		root.setExpanded(true);
 		TreeItem<String> tracefile = null;
 		String fileNames[] = TraceUtil.getLogFiles();
-		TotalMethodTraceContainer requiredObj = null;
-		String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\tracefiles\\LOG";
+		String filePath = System.getProperty("user.dir") + "\\src\\main\\resources\\tracefiles\\LOG\\";
 		for (String filename : fileNames) {
-			// Filename
 			tracefile = new TreeItem<>(filename);
 			root.getChildren().add(tracefile);
-			// methodNames filePath+filename+".log"	
-			ArrayList<TracePoint> tracePointList = TotalMethodTraceContainerDaoFactory.getTotalMethodTraceContaierDao()
-					.getTracePointList(new File(filePath + filename + ".log"));
-			try {
-				requiredObj = TotalMethodTraceContainerDaoFactory.getTotalMethodTraceContaierDao()
-						.getTraceDataFromFile(tracePointList, filename);
-			} catch (Exception e) {
-			}
-			List<IndividualMethodTraceContainer> methodCObj = requiredObj.getMethodTraceList();
-		
-			IndividualMethodTraceContainer traceContainer = null;
-			for (IndividualMethodTraceContainer mObj : methodCObj) {
-				TreeItem<String> methodName = new TreeItem<>( traceContainer.getMethodName());
+			TotalMethodTraceContainerDAO totalMethodTraceContaierDao = TotalMethodTraceContainerDaoFactory.getTotalMethodTraceContaierDao();
+			ArrayList<TracePoint> tracePointList = totalMethodTraceContaierDao.getTracePointList(new File(filePath+filename));
+			TotalMethodTraceContainer methodTraceContainer = totalMethodTraceContaierDao.getTraceDataFromFile(tracePointList, filename);
+			List<IndividualMethodTraceContainer> methodTraceList = methodTraceContainer.getMethodTraceList();
+			for (IndividualMethodTraceContainer individualMethodTraceContainer : methodTraceList) {
+				TreeItem<String> methodName = new TreeItem<>(individualMethodTraceContainer.getMethodName());
 				tracefile.getChildren().add(methodName);
 			}
-		
 		}
-		
-		
-		
+
 		return root;
 	}
 }
 /*
  * T
  * 
- * */
+ */
