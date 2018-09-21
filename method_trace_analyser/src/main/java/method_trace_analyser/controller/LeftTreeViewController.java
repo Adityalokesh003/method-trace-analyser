@@ -25,9 +25,7 @@ public class LeftTreeViewController {
 			// Filename
 			tracefile = new TreeItem<>(filename);
 			root.getChildren().add(tracefile);
-		}
-		// methodNames filePath+filename+".log"
-		for (String filename : fileNames) {
+			// methodNames filePath+filename+".log"	
 			ArrayList<TracePoint> tracePointList = TotalMethodTraceContainerDaoFactory.getTotalMethodTraceContaierDao()
 					.getTracePointList(new File(filePath + filename + ".log"));
 			try {
@@ -36,16 +34,21 @@ public class LeftTreeViewController {
 			} catch (Exception e) {
 			}
 			List<IndividualMethodTraceContainer> methodCObj = requiredObj.getMethodTraceList();
+		
 			IndividualMethodTraceContainer traceContainer = null;
 			for (IndividualMethodTraceContainer mObj : methodCObj) {
 				TreeItem<String> methodName = new TreeItem<>( traceContainer.getMethodName());
 				tracefile.getChildren().add(methodName);
 			}
+		
 		}
+		
+		
 		
 		return root;
 	}
 }
 /*
+ * T
  * 
  * */
