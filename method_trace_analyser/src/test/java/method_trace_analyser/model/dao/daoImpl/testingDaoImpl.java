@@ -13,13 +13,12 @@ import method_trace_analyser.model.dao.TotalMethodTraceContainerDAO;
 import method_trace_analyser.model.dao.daofactory.TotalMethodTraceContainerDaoFactory;
 
 class testingDaoImpl {
+	TotalMethodTraceContainerDaoImpl TotalMethodTraceContainerInstance=new TotalMethodTraceContainerDaoImpl();
 	
-
-// ihave changed a bit in the testFile1 
-	//please leave it as it is.
+	
 	@Test
-	public void testGetTracePointList_cond1() {
-		TotalMethodTraceContainerDaoImpl TotalMethodTraceContainerInstance=new TotalMethodTraceContainerDaoImpl();
+	public void testGetTracePointList_tracePoints() {
+	
 		TracePoint expectedTracePoint1=new TracePoint();
 		TracePoint expectedTracePoint2=new TracePoint();
 		TracePoint expectedTracePoint3=new TracePoint();
@@ -57,18 +56,25 @@ class testingDaoImpl {
 		     }
 		     catch(Exception e) {}
 		ArrayList<TracePoint> ActualtracePointsList=TotalMethodTraceContainerInstance.getTracePointList(testFile);
-		System.out.println(ActualtracePointsList);
-		System.out.println(ExpectedtracePointsList);
-		
-		if(!(ExpectedtracePointsList.size()==ActualtracePointsList.size())) {
-			fail("Test Failed");
-		}
 		
 	TracePoint[] ExpectedtracePointsArray=ExpectedtracePointsList.toArray(new TracePoint[ExpectedtracePointsList.size()]);
 	TracePoint[] ActualtracePointsArray=ActualtracePointsList.toArray(new TracePoint[ActualtracePointsList.size()]);	
 		
 	assertArrayEquals(ExpectedtracePointsArray,ActualtracePointsArray);
 	
+	}
+	
+
+	@Test
+	public void testDeleteTraceTRCFile_whenFileNotExists() {
+		assertFalse(TotalMethodTraceContainerInstance.deleteTraceTRCFile("testFile"));
+			
+	}
+	@Test
+	public void testDeleteTraceTRCFile_whenFileExists() {
+		File file=new File("src//main//resources//tracefiles//LOG//testFile1.log");
+		assertTrue(TotalMethodTraceContainerInstance.deleteTraceTRCFile("src//main//resources//tracefiles//LOG//testFile1.log"));
+		
 	}
 	
 }
