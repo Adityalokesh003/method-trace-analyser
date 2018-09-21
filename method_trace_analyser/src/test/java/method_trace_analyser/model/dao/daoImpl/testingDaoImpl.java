@@ -2,18 +2,21 @@ package method_trace_analyser.model.dao.daoImpl;
 import java.io.File;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 import org.junit.jupiter.api.Test;
 
+import method_trace_analyser.model.bo.TotalMethodTraceContainer;
 import method_trace_analyser.model.bo.TracePoint;
 import method_trace_analyser.model.dao.TotalMethodTraceContainerDAO;
 import method_trace_analyser.model.dao.daofactory.TotalMethodTraceContainerDaoFactory;
 
 class testingDaoImpl {
-	TotalMethodTraceContainerDaoImpl TotalMethodTraceContainerInstance=new TotalMethodTraceContainerDaoImpl();
+	TotalMethodTraceContainerDaoImpl TotalMethodTraceContainerDaoInstance=new TotalMethodTraceContainerDaoImpl();
 	
 	
 	@Test
@@ -55,7 +58,7 @@ class testingDaoImpl {
 			testFile=new File("src//main//resources//tracefiles//LOG//testFile1.log");
 		     }
 		     catch(Exception e) {}
-		ArrayList<TracePoint> ActualtracePointsList=TotalMethodTraceContainerInstance.getTracePointList(testFile);
+		ArrayList<TracePoint> ActualtracePointsList=TotalMethodTraceContainerDaoInstance.getTracePointList(testFile);
 		
 	TracePoint[] ExpectedtracePointsArray=ExpectedtracePointsList.toArray(new TracePoint[ExpectedtracePointsList.size()]);
 	TracePoint[] ActualtracePointsArray=ActualtracePointsList.toArray(new TracePoint[ActualtracePointsList.size()]);	
@@ -67,28 +70,44 @@ class testingDaoImpl {
 
 	@Test
 	public void testDeleteTraceTRCFile_whenFileNotExists() {
-		assertFalse(TotalMethodTraceContainerInstance.deleteTraceTRCFile("testFile"));
+		assertFalse(TotalMethodTraceContainerDaoInstance.deleteTraceTRCFile("testFile"));
 			
 	}
-	@Test//this deletes the trace files 
+	@Test //this deletes the trace files 
 	public void testDeleteTraceTRCFile_whenFileExists() {
 		File file=new File("src//main//resources//tracefiles//LOG//testFile1.log");
-		assertTrue(TotalMethodTraceContainerInstance.deleteTraceTRCFile("src//main//resources//tracefiles//LOG//testDelete.log"));
+	//	assertTrue(TotalMethodTraceContainerInstance.deleteTraceTRCFile("src//main//resources//tracefiles//LOG//testDelete.log"));
 		
 	}
 	
 	@Test
 	public void testDeleteTraceLogFile_whenFileNotExists() {
-		assertFalse(TotalMethodTraceContainerInstance.deleteTraceTRCFile("testFile"));
+		assertFalse(TotalMethodTraceContainerDaoInstance.deleteTraceTRCFile("testFile"));
 	}
 	@Test
 	public void testDeleteTraceLogFile_whenFileExists() {
 		File file=new File("src//main//resources//tracefiles//LOG//testFile1.log");
-		assertTrue(TotalMethodTraceContainerInstance.deleteTraceTRCFile("src//main//resources//tracefiles//LOG//testDelete2.log"));
+	//	assertTrue(TotalMethodTraceContainerInstance.deleteTraceTRCFile("src//main//resources//tracefiles//LOG//testDelete2.log"));
 		
 	}
 	
-	
+	@Test
+	public void testGenerateMethodInvocationCountTable() {
+		File testFile=new File("src//main//resources//tracefiles//LOG//test8.log");
+		ArrayList<TracePoint> ActualtracePointsList=TotalMethodTraceContainerDaoInstance.getTracePointList(testFile);
+		TotalMethodTraceContainer totalMethodTraceContainerInstance=null;
+		try {
+			totalMethodTraceContainerInstance = TotalMethodTraceContainerDaoInstance.getTraceDataFromFile(ActualtracePointsList,"src//main//resources//tracefiles//LOG//test8.log");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		TreeMap<String, Integer> InvocationTableMap=(TreeMap<String, Integer>) TotalMethodTraceContainerDaoInstance.generateMethodInvocationCountTable(totalMethodTraceContainerInstance);		
+		System.out.println(InvocationTableMap);
+		Integer[] ActualInvocationTimes=InvocationTableMap.values().toArray(new Integer[InvocationTableMap.size()]);
+		Integer[] expectedInvocationTimes= {1,7};
+		assertArrayEquals(expectedInvocationTimes, ActualInvocationTimes);
+	}
 	
 }
 
