@@ -70,12 +70,25 @@ class testingDaoImpl {
 		assertFalse(TotalMethodTraceContainerInstance.deleteTraceTRCFile("testFile"));
 			
 	}
-	@Test
+	@Test//this deletes the trace files 
 	public void testDeleteTraceTRCFile_whenFileExists() {
 		File file=new File("src//main//resources//tracefiles//LOG//testFile1.log");
-		assertTrue(TotalMethodTraceContainerInstance.deleteTraceTRCFile("src//main//resources//tracefiles//LOG//testFile1.log"));
+		assertTrue(TotalMethodTraceContainerInstance.deleteTraceTRCFile("src//main//resources//tracefiles//LOG//testDelete.log"));
 		
 	}
+	
+	@Test
+	public void testDeleteTraceLogFile_whenFileNotExists() {
+		assertFalse(TotalMethodTraceContainerInstance.deleteTraceTRCFile("testFile"));
+	}
+	@Test
+	public void testDeleteTraceLogFile_whenFileExists() {
+		File file=new File("src//main//resources//tracefiles//LOG//testFile1.log");
+		assertTrue(TotalMethodTraceContainerInstance.deleteTraceTRCFile("src//main//resources//tracefiles//LOG//testDelete2.log"));
+		
+	}
+	
+	
 	
 }
 
