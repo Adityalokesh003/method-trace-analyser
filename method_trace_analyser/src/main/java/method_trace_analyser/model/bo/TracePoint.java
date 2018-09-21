@@ -5,6 +5,7 @@ public class TracePoint {
 	private String threadId;
 	private String type;
 	private String traceEntry;
+	
 	public TracePoint() {
 	}
 	public String getTimeStamp() {
@@ -33,8 +34,24 @@ public class TracePoint {
 	}
 	@Override
 	public String toString() {
-		return "TracePoint [timeStamp=" + timeStamp + ", threadId=" + threadId + ", type=" + type + ", traceEntry="
+		return "TracePoint="+"[timeStamp=" + timeStamp + ", threadId=" + threadId + ", type=" + type + ", traceEntry="
 				+ traceEntry + "]";
+	}
+	@Override
+	public boolean equals(Object o) {
+		if(o==this) {
+			return true;
+		}
+		if(!(o instanceof TracePoint)) {
+			System.out.println("F1");
+			return false;
+		}
+		TracePoint tracePoint=(TracePoint)o;
+		if(this.getThreadId()==tracePoint.getThreadId() && this.getType()==tracePoint.getType() && this.getTraceEntry()==tracePoint.getTraceEntry() && this.getTimeStamp()==tracePoint.getTimeStamp() ) {
+		return true;	
+		}
+		System.out.println("F2");
+		return false;
 	}
 	 
 

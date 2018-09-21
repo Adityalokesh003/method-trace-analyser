@@ -14,26 +14,65 @@ import method_trace_analyser.model.dao.daofactory.TotalMethodTraceContainerDaoFa
 
 class testingDaoImpl {
 	
-TotalMethodTraceContainerDaoImpl TotalMethodTraceContainerInstance=new TotalMethodTraceContainerDaoImpl();
-	
+
+
 	@Test
 	public void testGetTracePointList_cond1() {
+		TotalMethodTraceContainerDaoImpl TotalMethodTraceContainerInstance=new TotalMethodTraceContainerDaoImpl();
+		TracePoint expectedTracePoint1=new TracePoint();
+		TracePoint expectedTracePoint2=new TracePoint();
+		TracePoint expectedTracePoint3=new TracePoint();
+		TracePoint expectedTracePoint4=new TracePoint();
+		
+		expectedTracePoint1.setTimeStamp("16:54:55.570210750");
+		expectedTracePoint1.setThreadId("0x2926700");
+		expectedTracePoint1.setTraceEntry("Dice.<init>()V bytecode");
+		expectedTracePoint1.setType("Entry");
+		
+		expectedTracePoint2.setTimeStamp("16:54:55.570217150");
+		expectedTracePoint2.setThreadId("0x2926700");
+		expectedTracePoint2.setTraceEntry("[1] Dice.<init> (Dice.java:5)");
+		expectedTracePoint2.setType("Event");
+		
+		expectedTracePoint3.setTimeStamp("16:54:55.570219283");
+		expectedTracePoint3.setThreadId("0x2926700");
+		expectedTracePoint3.setTraceEntry("[2] SnakeGame.main (SnakeGame.java:29)");
+		expectedTracePoint3.setType("Event");
+		
+		expectedTracePoint4.setTimeStamp("16:54:55.570223122");
+		expectedTracePoint4.setThreadId("0x2926700");
+		expectedTracePoint4.setTraceEntry("Dice.<init>()V bytecode");
+		expectedTracePoint4.setType("Exit");
+		
+		ArrayList<TracePoint> ExpectedtracePointsList=new ArrayList<TracePoint>();
+		ExpectedtracePointsList.add(expectedTracePoint1);
+		ExpectedtracePointsList.add(expectedTracePoint2);
+		ExpectedtracePointsList.add(expectedTracePoint3);
+		ExpectedtracePointsList.add(expectedTracePoint4);
 		
 		File testFile = null;
 		try{
-			testFile=new File("src//main//resources//tracefiles//LOG//test8.log");
+			testFile=new File("src//main//resources//tracefiles//LOG//testFile1.log");
 		     }
 		     catch(Exception e) {}
-		ArrayList<TracePoint> ActualtracePoints=TotalMethodTraceContainerInstance.getTracePointList(testFile);
-		//AssertEquals(ExpectedtracePoints,ActualtracePoints);
+		ArrayList<TracePoint> ActualtracePointsList=TotalMethodTraceContainerInstance.getTracePointList(testFile);
+		System.out.println(ActualtracePointsList);
+		System.out.println(ExpectedtracePointsList);
 		
+		if(!(ExpectedtracePointsList.size()==ActualtracePointsList.size())) {
+			fail("Test Failed");
+		}
+		
+	TracePoint[] ExpectedtracePointsArray=ExpectedtracePointsList.toArray(new TracePoint[ExpectedtracePointsList.size()]);
+	TracePoint[] ActualtracePointsArray=ActualtracePointsList.toArray(new TracePoint[ActualtracePointsList.size()]);	
+		
+	assertArrayEquals(ExpectedtracePointsArray,ActualtracePointsArray);
 	
-		System.out.println(ActualtracePoints);
 	}
 	
-	}
-	
-	
+}
+
+		
 	
 	
 
