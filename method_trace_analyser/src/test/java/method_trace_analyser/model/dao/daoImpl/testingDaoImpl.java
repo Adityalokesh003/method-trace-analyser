@@ -73,7 +73,7 @@ class testingDaoImpl {
 		assertFalse(TotalMethodTraceContainerDaoInstance.deleteTraceTRCFile("testFile"));
 			
 	}
-	@Test //this deletes the trace files 
+	@Test //This deletes the trace files..If wanted to test remove the comment at the assert Statements 
 	public void testDeleteTraceTRCFile_whenFileExists() {
 		File file=new File("src//main//resources//tracefiles//LOG//testFile1.log");
 	//	assertTrue(TotalMethodTraceContainerInstance.deleteTraceTRCFile("src//main//resources//tracefiles//LOG//testDelete.log"));
