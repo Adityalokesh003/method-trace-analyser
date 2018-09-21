@@ -47,7 +47,7 @@ public class TracePoint {
 			return false;
 		}
 		TracePoint tracePoint=(TracePoint)o;
-		if(this.getThreadId()==tracePoint.getThreadId() && this.getType()==tracePoint.getType() && this.getTraceEntry()==tracePoint.getTraceEntry() && this.getTimeStamp()==tracePoint.getTimeStamp() ) {
+		if(this.getThreadId().equals(tracePoint.getThreadId()) && this.getType().equals(tracePoint.getType()) && this.getTraceEntry().equals(tracePoint.getTraceEntry()) && this.getTimeStamp().equals(tracePoint.getTimeStamp()) ) {
 		return true;	
 		}
 		System.out.println("F2");
