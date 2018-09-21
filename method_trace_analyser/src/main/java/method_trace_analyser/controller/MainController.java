@@ -1,5 +1,6 @@
 package method_trace_analyser.controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -27,5 +28,8 @@ public class MainController implements Initializable{
 	
 	public void handleMenuExit(ActionEvent actionEvent) {
 		MenuBarController.fileExitAction();
+	}
+	public void handleUploadTraceFiles(ActionEvent actionEvent) {
+		File traceTRCfile = RightVBoxController.getTRCFromFileChooser();
 	}
 }

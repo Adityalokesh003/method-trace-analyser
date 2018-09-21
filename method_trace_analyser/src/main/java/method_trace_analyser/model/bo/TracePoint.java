@@ -4,7 +4,7 @@ public class TracePoint {
 	private String timeStamp;
 	private String threadId;
 	private String type;
-	private String methodName;
+	private String traceEntry;
 	public TracePoint() {
 	}
 	public String getTimeStamp() {
@@ -25,17 +25,17 @@ public class TracePoint {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getMethodName() {
-		return methodName;
+	public String getTraceEntry() {
+		return traceEntry;
 	}
-	public void setMethodName(String methodName) {
-		this.methodName = methodName;
+	public void setTraceEntry(String traceEntry) {
+		this.traceEntry = traceEntry;
 	}
 	@Override
 	public String toString() {
-		return "TracePoint [timeStamp=" + timeStamp + ", threadId=" + threadId + ", type=" + type + ", methodName="
-				+ methodName + "]";
+		return "TracePoint [timeStamp=" + timeStamp + ", threadId=" + threadId + ", type=" + type + ", traceEntry="
+				+ traceEntry + "]";
 	}
-	
+	 
 
 }

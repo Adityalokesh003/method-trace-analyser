@@ -11,8 +11,10 @@ public class MenuBarController {
 		DirectoryChooser directoryChooser = new DirectoryChooser();
 		directoryChooser.setTitle("Open Trace Folder");
 		File selectedDirectory = directoryChooser.showDialog(null);
-		if (selectedDirectory.exists()) {
-			System.out.println("yey");
+		if ( selectedDirectory!=null && selectedDirectory.exists()) {
+			 
+				System.out.println("yey");
+			 
 		}
 	}
 	 

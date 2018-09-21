@@ -6,7 +6,8 @@ import method_trace_analyser.util.TraceUtil;
 public class LeftTreeViewController {
 
 	public static TreeItem<String> initTreeView() {
-		TreeItem<String> root = new TreeItem<>("comparedFiles");
+		TreeItem<String> root = new TreeItem<>("Trace Explorer");
+		root.setExpanded(true);
 		TreeItem<String> tracefile = null;
 		String fileNames[] = TraceUtil.getLogFiles();
 		for (String filename : fileNames) {
