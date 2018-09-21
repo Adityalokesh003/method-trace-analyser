@@ -145,14 +145,7 @@ public class TotalMethodTraceContainerDaoImpl implements TotalMethodTraceContain
 					if (!totalMethodTraceContainer.getStackTraceMap().containsKey(uniqueMethodName)) {
 						totalMethodTraceContainer.getStackTraceMap().put(uniqueMethodName, stackTracePoints);
 					}
-					Pattern pattern = Pattern.compile("\\[(?<sNo>\\d+?)\\]\\s(?<methodName>.*?)\\s*?\\((?<javaFileName>.*?):(?<lineNumber>\\d+)\\)");
-					Matcher matcher = pattern.matcher(tracePoint.getTraceEntry());
-					if (matcher.find()) {
-						stackTracePoint.setsNo(Integer.parseInt(matcher.group("sNo")));
-						stackTracePoint.setMethodName(matcher.group("methodName"));
-						stackTracePoint.setJavaFileName(matcher.group("javaFileName"));
-						stackTracePoint.setLineNumber(Integer.parseInt(matcher.group("lineNumber")));
-					}
+					TraceUtil.getStackPoint(tracePoint.getTraceEntry());
 					totalMethodTraceContainer.getStackTraceMap().get(uniqueMethodName).add(stackTracePoint);
 				
 			} else if (tracePoint.getType().equals("Exit")) {

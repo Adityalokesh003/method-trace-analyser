@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import method_trace_analyser.model.bo.StackTracePoint;
+
 public class TraceUtil {
 	public static String[] getLogFiles() {
 		String[] fileNames = null;
@@ -40,5 +42,18 @@ public class TraceUtil {
 
 		}
 		return -1L;
+	}
+	public static StackTracePoint getStackPoint(String traceEntry) {
+		Pattern pattern = Pattern.compile("\\[(?<sNo>\\d+?)\\]\\s(?<methodName>.*?)\\s*?\\((?<javaFileName>.*?):(?<lineNumber>\\d+)\\)");
+		Matcher matcher = pattern.matcher(traceEntry);
+		StackTracePoint stackTracePoint = null;
+		if (matcher.find()) {
+			stackTracePoint = new StackTracePoint();
+			stackTracePoint.setsNo(Integer.parseInt(matcher.group("sNo")));
+			stackTracePoint.setMethodName(matcher.group("methodName"));
+			stackTracePoint.setJavaFileName(matcher.group("javaFileName"));
+			stackTracePoint.setLineNumber(Integer.parseInt(matcher.group("lineNumber")));
+		}
+		return stackTracePoint;
 	}
 }
