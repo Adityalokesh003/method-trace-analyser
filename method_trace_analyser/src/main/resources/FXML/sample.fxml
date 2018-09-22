@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1240.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="method_trace_analyser.controller.MainController">
 	<top>
 
 		<VBox prefHeight="27.0" prefWidth="1240.0" BorderPane.alignment="CENTER">
 			<children>
-				<MenuBar prefWidth="1240.0">
+				<MenuBar prefWidth="1240.0" stylesheets="@../css/main.css">
 					<menus>
 						<Menu mnemonicParsing="false" text="File">
 							<items>
@@ -36,13 +36,7 @@
 						<Menu mnemonicParsing="false" text="Edit">
 							<items>
 								<MenuItem mnemonicParsing="false" text="Update trace files" />
-								<MenuItem mnemonicParsing="false" text="Delete trace files" />
-							</items>
-						</Menu>
-						<Menu mnemonicParsing="false" text="Compare">
-							<items>
-								<MenuItem mnemonicParsing="false" text="Compare CodeFlow ,stackTrace between two trace files" />
-								<MenuItem mnemonicParsing="false" text="Compare two trace files,One from failing and passing case each" />
+								<MenuItem fx:id="delete_trace_files" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete trace files" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="false" text="Help">
@@ -56,50 +50,84 @@
 		</VBox>
 	</top>
 	<center>
-		<AnchorPane prefHeight="542.0" prefWidth="748.0" style="-fx-border-color: #CFCFCF;" BorderPane.alignment="CENTER" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
-			<children>
-				<TabPane layoutY="3.0" prefHeight="598.0" prefWidth="822.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+				<TabPane prefHeight="585.0" prefWidth="819.0" tabClosingPolicy="UNAVAILABLE">
 					<tabs>
 						<Tab text="Graphical View">
 							<content>
-								<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="740.0" fx:id="barchartAnchor">
-									<children>
+                        <ScrollPane>
+                           <content>
+      								<AnchorPane fx:id="barchartAnchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="472.0" prefWidth="740.0">
+      									<children>
 										 
 									</children>
-								</AnchorPane>
+      								</AnchorPane>
+                           </content>
+                        </ScrollPane>
 							</content>
 						</Tab>
 						<Tab text="Tabular View">
 							<content>
-								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="445.0" prefWidth="909.0" style="-fx-background-color: #355667;">
-									<children>
-										<TableView fx:id="tableView" layoutX="18.0" layoutY="51.0" prefHeight="565.0" prefWidth="820.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-											<columns>
-												<TableColumn prefWidth="88.0" text="ID" />
-												<TableColumn prefWidth="261.0" text="Method" />
-												<TableColumn prefWidth="352.0" text="Invokation times" />
-											</columns>
-										</TableView>
-										<ScrollBar layoutX="959.0" layoutY="10.0" orientation="VERTICAL" prefHeight="430.0" prefWidth="14.0" style="-fx-background-color: #223E4A;" visibleAmount="100.0" />
-									</children>
-								</AnchorPane>
+                        <ScrollPane>
+                           <content>
+                              <TableView fx:id="tableview">
+                                <columns>
+                                  <TableColumn prefWidth="131.0" text="ID" />
+                                  <TableColumn minWidth="0.0" prefWidth="116.0" text="Method name" />
+                                    <TableColumn prefWidth="150.0" text="Invokation Number" />
+                                </columns>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
 							</content>
 						</Tab>
 						<Tab text="Method overview">
-							<content>
-								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="493.0" prefWidth="740.0" style="-fx-background-color: #355667;" />
-							</content>
-						</Tab>
+                     <content>
+                        <ScrollPane prefHeight="200.0" prefWidth="820.0">
+                           <content>
+                              <Accordion prefHeight="400.0" prefWidth="817.0">
+                                <panes>
+                                  <TitledPane text="untitled 1">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    </content>
+                                  </TitledPane>
+                                  <TitledPane animated="false" text="untitled 2">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    </content>
+                                  </TitledPane>
+                                  <TitledPane animated="false" text="untitled 3">
+                                    <content>
+                                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    </content>
+                                  </TitledPane>
+                                    <TitledPane animated="false" text="untitled">
+                                      <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                      </content>
+                                    </TitledPane>
+                                </panes>
+                              </Accordion>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                  </Tab>
 					</tabs>
 				</TabPane>
-			</children>
-		</AnchorPane>
+         </children>
+      </AnchorPane>
 
 	</center>
 	<left>
 		<VBox prefHeight="607.0" prefWidth="218.0" BorderPane.alignment="CENTER">
 			<children>
-				<TreeView fx:id="traceExplorer" prefHeight="615.0" prefWidth="232.0" />
+            <ScrollPane prefHeight="642.0" prefWidth="218.0">
+               <content>
+      				<TreeView fx:id="traceExplorer" prefHeight="583.0" prefWidth="204.0" />
+               </content>
+            </ScrollPane>
 			</children>
 		</VBox>
 	</left>
@@ -107,28 +135,47 @@
 		<AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 			<children>
  
-					<VBox alignment="TOP_CENTER" layoutX="3.0" prefHeight="596.0" prefWidth="211.0" spacing="12.0" style="-fx-background-color: #223E4A;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+					<VBox alignment="CENTER" layoutX="3.0" prefHeight="596.0" prefWidth="211.0" spacing="12.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
 						<children>
-							<Button fx:id="upload_tracefiles" mnemonicParsing="false" onAction="#handleUploadTraceFiles" text="Upload Trace File">
+							<Button fx:id="upload_tracefiles" mnemonicParsing="false" onAction="#handleUploadTraceFiles" text="Upload Trace File" wrapText="true">
 								<VBox.margin>
 									<Insets bottom="20.0" />
 								</VBox.margin>
+                     <font>
+                        <Font name="Andalus" size="14.0" />
+                     </font>
 							</Button>
-							<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Review">
+							<Button mnemonicParsing="false" prefHeight="57.0" prefWidth="111.0" text="StackTrace and CodeFlow" textAlignment="CENTER" wrapText="true">
 								<VBox.margin>
 									<Insets bottom="20.0" />
 								</VBox.margin>
+                     <font>
+                        <Font name="Andalus" size="14.0" />
+                     </font>
 							</Button>
-							<Button mnemonicParsing="false" prefHeight="25.0" prefWidth="105.0" text="Clear">
+							<Button mnemonicParsing="false" prefHeight="57.0" prefWidth="110.0" text="Failing and passing case" textAlignment="CENTER" wrapText="true">
 								<VBox.margin>
 									<Insets bottom="20.0" />
 								</VBox.margin>
+                     <font>
+                        <Font name="Andalus" size="14.0" />
+                     </font>
 							</Button>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" text="Review" wrapText="true">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Andalus" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Clear" wrapText="true">
+                     <font>
+                        <Font name="Andalus" size="14.0" />
+                     </font>
+                  </Button>
 						</children>
-						<padding>
-							<Insets top="120.0" />
-						</padding>
 					</VBox>
 			</children>
 		</AnchorPane>

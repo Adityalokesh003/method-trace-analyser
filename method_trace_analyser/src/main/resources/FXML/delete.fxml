@@ -16,7 +16,7 @@
          <children>
             <ImageView fitHeight="81.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@question-mark-icon-jpg-18.jpeg" />
+                  <Image url="../image/question-mark.jpeg" />
                </image>
             </ImageView>
             <Label prefHeight="78.0" prefWidth="348.0" text="Are you sure to delete all uploaded tarce file(s)?" textAlignment="CENTER" wrapText="true">

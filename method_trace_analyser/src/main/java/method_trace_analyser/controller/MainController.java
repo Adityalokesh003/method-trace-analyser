@@ -8,12 +8,18 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainController implements Initializable{
 	@FXML
@@ -49,6 +55,19 @@ public class MainController implements Initializable{
 	}
 	public void handleUploadTraceFiles(ActionEvent actionEvent) {
 		File traceTRCfile = RightVBoxController.getTRCFromFileChooser();
+	}
+	public void handleDeleteButton(ActionEvent actionEvent) {
+		try {
+		Parent  root = FXMLLoader.load(getClass().getResource("/FXML/delete.fxml"));
+		Scene scene = new Scene(root);
+		Stage primaryStage=new Stage();
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		primaryStage.setResizable(false);
+		primaryStage.initStyle(StageStyle.UNDECORATED);
+		}catch(Exception e) {
+			System.out.println("can't open a diolog box");
+		}
 	}
 	
 }
