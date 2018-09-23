@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.ProgressBar?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
@@ -16,6 +17,7 @@
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -37,6 +39,7 @@
 							<items>
 								<MenuItem mnemonicParsing="false" text="Update trace files" />
 								<MenuItem fx:id="delete_trace_files" mnemonicParsing="false" onAction="#handleDeleteButton" text="Delete trace files" />
+                        <MenuItem mnemonicParsing="false" text="Clear" />
 							</items>
 						</Menu>
 						<Menu mnemonicParsing="false" text="Help">
@@ -50,7 +53,7 @@
 		</VBox>
 	</top>
 	<center>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="560.0" prefWidth="822.0" BorderPane.alignment="CENTER">
          <children>
 				<TabPane prefHeight="585.0" prefWidth="819.0" tabClosingPolicy="UNAVAILABLE">
 					<tabs>
@@ -180,7 +183,15 @@
 			</children>
 		</AnchorPane>
 	</right>
-	<bottom>
-		<Label prefHeight="17.0" prefWidth="1237.0" BorderPane.alignment="CENTER" />
-	</bottom>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="1240.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Loading" />
+            <ProgressBar prefHeight="20.0" prefWidth="162.0" progress="0.0" />
+         </children>
+         <padding>
+            <Insets right="40.0" />
+         </padding>
+      </HBox>
+   </bottom>
 </BorderPane>
