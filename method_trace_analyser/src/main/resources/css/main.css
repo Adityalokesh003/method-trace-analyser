@@ -1,15 +1,48 @@
  /*css comes here */
- .mbar{
- 	-fx-background-color: #283655;
- }
  .button{
- 	-fx-background-color: #90a4ae;
+ 	-fx-background-color: #2f818c;
+ 	-fx-color: #000000;
+ 	-fx-font-weight: bold;
  }
  
  .menu-bar{
- 	-fx-background-color: #00545f;
- 	-fx-color: #90a4ae;
+ 	-fx-background-color: #2f818c;
  }
- .menu .label{
- 	-fx-color: #90a4ae;
+ .menu{
+ 	-fx-color: white;
  }
+ .left{
+ 	-fx-background-color: #63b1bc;
+ }
+ .tree-cell:selected {
+    -fx-font-weight: bold ;
+}
+.tree-view, .tree-cell {
+    -fx-background-color: #e2e2e2;
+    -fx-text-fill: ;
+}
+.bottom .HBox{
+	-fx-background-color: black;
+}
+.tab-pane .tab
+{
+    -fx-background-color: #2f818c;
+
+}
+.tab-pane .tab:selected
+{
+    -fx-background-color: #00545f;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+#bottom_hbox{
+	-fx-background-color: #2f818c;
+}
+#right_anchorpane{
+	-fx-background-color: #e2e2e2;
+}
