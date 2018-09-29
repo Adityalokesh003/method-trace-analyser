@@ -26,7 +26,7 @@
 
 		<VBox prefHeight="27.0" prefWidth="1240.0" BorderPane.alignment="CENTER">
 			<children>
-				<MenuBar prefWidth="1240.0" stylesheets="@../css/main.css">
+				<MenuBar id="mbar" prefWidth="1240.0" stylesheets="@../css/main.css">
 					<menus>
 						<Menu mnemonicParsing="false" text="File">
 							<items>
@@ -124,7 +124,7 @@
 
 	</center>
 	<left>
-		<VBox prefHeight="607.0" prefWidth="218.0" BorderPane.alignment="CENTER">
+		<VBox  prefHeight="607.0" prefWidth="218.0" BorderPane.alignment="CENTER">
 			<children>
       				<TreeView fx:id="traceExplorer" prefHeight="583.0" prefWidth="204.0" />
 			</children>

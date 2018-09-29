@@ -1,2 +1,15 @@
  /*css comes here */
+ .mbar{
+ 	-fx-background-color: #283655;
+ }
+ .button{
+ 	-fx-background-color: #90a4ae;
+ }
  
+ .menu-bar{
+ 	-fx-background-color: #00545f;
+ 	-fx-color: #90a4ae;
+ }
+ .menu .label{
+ 	-fx-color: #90a4ae;
+ }
