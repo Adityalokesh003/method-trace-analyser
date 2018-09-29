@@ -25,7 +25,7 @@ public class TabPaneController {
 	
 	public static BarChart<String, Number> getBarChart(String traceLOGFileName) throws Exception {
 		TotalMethodTraceContainerDAO totalMethodTraceContaierDao = TotalMethodTraceContainerDaoFactory.getTotalMethodTraceContaierDao();
-		File traceLOGFile=new File(System.getProperty("user.dir")+"\\src\\main\\resources\\tracefiles\\LOG\\test8.log");
+		File traceLOGFile=new File(System.getProperty("user.dir")+"\\src\\main\\resources\\tracefiles\\LOG\\test9.log");
 		ArrayList<TracePoint> tracePointList = totalMethodTraceContaierDao.getTracePointList(traceLOGFile);
 		TotalMethodTraceContainer totalMethodTraceContainer = totalMethodTraceContaierDao.getTraceDataFromFile(tracePointList, traceLOGFileName);
 		Map<String, Integer> methodInvocationCountTable = totalMethodTraceContaierDao.generateMethodInvocationCountTable(totalMethodTraceContainer);
@@ -56,7 +56,7 @@ public class TabPaneController {
 	
 	public static TableView getTableView(String traceLOGFileName) throws Exception {
 		TotalMethodTraceContainerDAO totalMethodTraceContaierDao = TotalMethodTraceContainerDaoFactory.getTotalMethodTraceContaierDao();
-		File traceLOGFile=new File(System.getProperty("user.dir")+"\\src\\main\\resources\\tracefiles\\LOG\\test8.log");
+		File traceLOGFile=new File(System.getProperty("user.dir")+"\\src\\main\\resources\\tracefiles\\LOG\\test9.log");
 		ArrayList<TracePoint> tracePointList = totalMethodTraceContaierDao.getTracePointList(traceLOGFile);
 		TotalMethodTraceContainer totalMethodTraceContainer = totalMethodTraceContaierDao.getTraceDataFromFile(tracePointList, traceLOGFileName);
 		Map<String, Integer> methodInvocationCountTable = totalMethodTraceContaierDao.generateMethodInvocationCountTable(totalMethodTraceContainer);

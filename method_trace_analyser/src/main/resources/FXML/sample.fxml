@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.ProgressBar?>
+<?import com.jfoenix.controls.JFXProgressBar?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
@@ -126,11 +126,7 @@
 	<left>
 		<VBox prefHeight="607.0" prefWidth="218.0" BorderPane.alignment="CENTER">
 			<children>
-            <ScrollPane prefHeight="642.0" prefWidth="218.0">
-               <content>
       				<TreeView fx:id="traceExplorer" prefHeight="583.0" prefWidth="204.0" />
-               </content>
-            </ScrollPane>
 			</children>
 		</VBox>
 	</left>
@@ -186,8 +182,8 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="1240.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Loading" />
-            <ProgressBar prefHeight="20.0" prefWidth="162.0" progress="0.0" />
+            <JFXProgressBar prefHeight="6.0" prefWidth="116.0" />
+            <Label prefHeight="17.0" prefWidth="40.0" text="Loading" />
          </children>
          <padding>
             <Insets right="40.0" />
