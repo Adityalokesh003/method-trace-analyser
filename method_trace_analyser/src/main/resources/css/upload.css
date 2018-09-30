@@ -1,0 +1,11 @@
+#top_hbox{
+	-fx-background-color: #2f818c;
+	
+}.button{
+ 	-fx-background-color: #2f818c;
+ 	-fx-font-weight: bold;
+ }
+ #center_hbox{
+ 	-fx-background-color: #e2e2e2;
+ }
+ 
