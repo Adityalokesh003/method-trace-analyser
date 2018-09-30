@@ -19,7 +19,6 @@
 }
 .tree-view, .tree-cell {
     -fx-background-color: #e2e2e2;
-    -fx-text-fill: ;
 }
 .bottom .HBox{
 	-fx-background-color: black;

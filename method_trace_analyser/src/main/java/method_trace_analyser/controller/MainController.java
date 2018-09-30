@@ -18,6 +18,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -58,13 +59,15 @@ public class MainController implements Initializable{
 	}
 	public void handleDeleteButton(ActionEvent actionEvent) {
 		try {
-		Parent  root = FXMLLoader.load(getClass().getResource("/FXML/delete.fxml"));
-		Scene scene = new Scene(root);
+		FXMLLoader fxmlloader= new FXMLLoader(getClass().getResource("/FXML/delete.fxml"));
+		Parent root1=(Parent)fxmlloader.load();
 		Stage primaryStage=new Stage();
-		primaryStage.setScene(scene);
-		primaryStage.show();
 		primaryStage.setResizable(false);
+	    primaryStage.initModality(Modality.APPLICATION_MODAL);
 		primaryStage.initStyle(StageStyle.UNDECORATED);
+		primaryStage.setScene(new Scene(root1));
+		primaryStage.show();
+		
 		}catch(Exception e) {
 			System.out.println("can't open a diolog box");
 		}
